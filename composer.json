@@ -1,0 +1,21 @@
+{
+    "name": "alkaid/alkaid-blog",
+    "description": "Personnal Blog",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alkaid-codeur",
+            "email": "nobeliumacc@gmail.com"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "^2.0",
+        "symfony/var-dumper": "^6.0",
+        "filp/whoops": "^2.14"
+    }
+}
