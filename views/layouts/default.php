@@ -1,6 +1,4 @@
-<?php
 
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,8 +45,8 @@
 				<span class="sr-only">(current)</span>
 				</a>
 			</li> 
-			<li class="nav-item">
-				<a class="nav-link" href="blog.html">Articles</a>
+			<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/articles')? "active": "" ?>">
+				<a class="nav-link" href="<?= $router->url('posts') ?> ">Articles</a>
 			</li>
 			<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/a-propos')? "active": "" ?>">
 				<a class="nav-link" href="<?= $router->url('about') ?>">A propos</a>
@@ -79,9 +77,14 @@
 				</div>
 				<div class="col-lg-12">
 					<div class="copyright-text">
-					<p>Copyright 2020 Stand Blog Co.
-							
-						| Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
+						<?php if(defined('DEBUG_TIME')): ?>
+							<p style="text-transform: capitalize">
+							Page générée en <?= round(1000 * (microtime(true) - DEBUG_TIME)) ?> ms
+							</p>
+						<?php endif ?>
+					<!-- <p>Copyright 2020 Stand Blog Co.
+						| Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a>
+					</p> -->
 					</div>
 				</div>
 			</div>
