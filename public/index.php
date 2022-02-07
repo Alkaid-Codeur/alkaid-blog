@@ -32,4 +32,5 @@ $router->get('/', 'main.home', 'home')
 	   ->get('/nous-contacter', 'main.contact', 'contact')
 	   ->get('/a-propos', 'main.about', 'about')
 	   ->get('/articles', 'posts.index', 'posts')
+	   ->get('/article/[*:slug]-[i:id]', 'posts.show', 'article')
 	   ->run();

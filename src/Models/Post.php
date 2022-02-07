@@ -11,6 +11,10 @@ class Post {
 	private string $created_at;
 	private int $author_id;
 	private string $content;
+
+	/**
+	 * @var Category[]
+	 */
 	private $categories = [];
 
 	public function getID(): ?int
@@ -40,6 +44,10 @@ class Post {
 	public function getContent(): string
 	{
 		return $this->content;
+	}
+
+	public function addCategories(Category $category) {
+		$this->categories[] = $category;
 	}
 
 	public function getCategories(): array

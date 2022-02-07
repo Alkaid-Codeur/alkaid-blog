@@ -29,6 +29,7 @@ $pdo->query("INSERT INTO users (mail, username, password) VALUES ('admin@gmail.c
 $user_id= $pdo->lastInsertId();
 
 
+
 for ($i=0; $i<50; $i++) {
 	$slug = $faker->slug(3);
 	$title = $faker->sentence(rand(6, 10));

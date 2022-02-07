@@ -9,7 +9,7 @@ class Text {
 		{
 			return $text;
 		}
-		return mb_substr($text, 0, $limit) . '...';
-
+		$lastSpace = mb_strpos($text, ' ', $limit);
+		return mb_substr($text, 0, $lastSpace) . ' ...';
 	}
 }

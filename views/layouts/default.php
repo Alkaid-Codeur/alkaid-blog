@@ -45,7 +45,7 @@
 				<span class="sr-only">(current)</span>
 				</a>
 			</li> 
-			<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/articles')? "active": "" ?>">
+			<li class="nav-item <?= (str_contains($_SERVER['REQUEST_URI'], 'article'))? "active": "" ?>">
 				<a class="nav-link" href="<?= $router->url('posts') ?> ">Articles</a>
 			</li>
 			<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/a-propos')? "active": "" ?>">

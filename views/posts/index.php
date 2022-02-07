@@ -1,6 +1,8 @@
 <?php
 
 use App\Helpers\Text;
+use App\Helpers\URL;
+use App\Models\Category;
 use App\Models\Post;
 use App\PDOConnection;
 
@@ -8,12 +10,22 @@ $pdo = PDOConnection::getPDO();
 $limit = 10;
 $postCount = (int)$pdo->query('SELECT count(id) FROM post')->fetch()[0];
 $pages = ceil($postCount / $limit);
-$currentPage = isset($_GET['page'])? (int)$_GET['page'] : 1;
-if($currentPage < 0 ) {
-	throw new Exception("La page n'existe pas");
-}
+$currentPage = URL::getInt('page', 1);
 $offset = ($currentPage - 1) * $limit;
-$postList = $pdo->query("SELECT * FROM post LIMIT $limit OFFSET $offset")->fetchAll(PDO::FETCH_CLASS, Post::class);
+$postList = $pdo->query("SELECT * FROM post ORDER BY created_at DESC LIMIT $limit OFFSET $offset")->fetchAll(PDO::FETCH_CLASS, Post::class);
+$postByIDs = [];
+foreach($postList as $post) {
+	$postByIDs[$post->getID()] = $post;
+}
+
+$list = implode(", ", array_keys($postByIDs));
+$categories = $pdo->query("SELECT c.*, pc.post_id FROM category c JOIN post_category pc ON pc.category_id = c.id WHERE pc.post_id IN ($list)")->fetchAll(PDO::FETCH_CLASS, Category::class);
+
+foreach($categories as $category) {
+	$postByIDs[$category->getPostID()]->addCategories($category);
+}
+
+
 ?>
 <!-- Page Content -->
 <!-- Banner Starts Here -->
@@ -64,34 +76,7 @@ $postList = $pdo->query("SELECT * FROM post LIMIT $limit OFFSET $offset")->fetch
 				<div class="all-blog-posts">
 					<div class="row" style="align-items: stretch">
 						<?php foreach($postList as $post): ?>
-							<div class="col-lg-6" style="display: flex">
-								<div class="blog-post" style="display: flex; flex-direction: column;">
-									<!-- <div class="blog-thumb">
-										<img src="assets/images/blog-thumb-01.jpg" alt="">
-									</div> -->
-									<div class="down-content" style="flex-grow: 1">
-										<!-- <span>Lifestyle</span> -->
-										<a href="post-details.html"><h4><?= $post->getTitle() ?></h4></a>
-										<ul class="post-info">
-											<!-- <li><a href="#">Admin</a></li> -->
-											<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
-											<!-- <li><a href="#">12 Comments</a></li> -->
-										</ul>
-										<p><?= Text::excerpt(nl2br($post->getContent()), 100) ?></p>
-										<div class="post-options">
-											<div class="row">
-											<div class="col-lg-12">
-												<ul class="post-tags">
-												<li><i class="fa fa-tags"></i></li>
-												<li><a href="#">Best Templates</a>,</li>
-												<li><a href="#">TemplateMo</a></li>
-												</ul>
-											</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							<?php require 'card.php' ?>
 						<?php endforeach ?>
 						<div class="col-lg-12">
 							<ul class="page-numbers">
