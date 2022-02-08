@@ -10,6 +10,11 @@ class Text {
 			return $text;
 		}
 		$lastSpace = mb_strpos($text, ' ', $limit);
+		$lastGoToLine = mb_strpos($text, PHP_EOL);
+
+		if($lastGoToLine < $lastSpace) {
+			return mb_substr($text, 0, $lastGoToLine) . ' ...';
+		}
 		return mb_substr($text, 0, $lastSpace) . ' ...';
 	}
 }

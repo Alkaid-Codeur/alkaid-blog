@@ -1,32 +1,23 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Helpers\URL;
 use App\PDOConnection;
+use App\Table\CategoryTable;
+use App\Table\PostTable;
 
 $title = "Article";
 $pdo = PDOConnection::getPDO();
 $id = (int)$params['id'];
 $slug = $params['slug'];
-$query = $pdo->prepare('SELECT * FROM post WHERE id = ?');
-$query->execute([$id]);
-$query->setFetchMode(PDO::FETCH_CLASS, Post::class);
-$post = $query->fetch();
 
-if($post === false) {
-	throw new Exception("Aucun enregistrement ne correspond à l'ID dans les parametres");
-}
-$query = $pdo->prepare("SELECT c.* 
-	FROM category c, post p, post_category pc
-	WHERE p.id = pc.post_id AND pc.category_id = c.id AND p.id = :id");
-$query->execute(['id' => $post->getID()]);
-$categories = $query->fetchAll(PDO::FETCH_CLASS, Category::class);
+$postTable = new PostTable($pdo);
+$post = $postTable->find($id);
 
-if($post->getSlug() !== $slug) {
-	$url = $router->url('article', ['id' => $post->getID(), 'slug' => $post->getSlug()]);
-	http_response_code(301);
-	header('Location:'. $url);
-}
+$categories = (new CategoryTable($pdo))->getPostCategories($post->getID());
+
+$url = $router->url('article', ['id' => $post->getID(), 'slug' => $post->getSlug()]);
+URL::handleSlugInURL($slug, $post->getSlug(), $url);
+
 ?>
 
 
@@ -85,7 +76,7 @@ if($post->getSlug() !== $slug) {
 								</div>
 								<div class="down-content">
 									<?php foreach($categories as $category): ?>
-										<span><?= $category->getName() ?></span>, &nbsp;
+										<a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>"><span><?= $category->getName() ?></span></a>, &nbsp;
 									<?php endforeach ?>
 								<a href="post-details.html"><h4>Aenean pulvinar gravida sem nec</h4></a>
 								<ul class="post-info">
@@ -203,77 +194,7 @@ if($post->getSlug() !== $slug) {
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4">
-				<div class="sidebar">
-				<div class="row">
-					<div class="col-lg-12">
-					<div class="sidebar-item search">
-						<form id="search_form" name="gs" method="GET" action="#">
-						<input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
-						</form>
-					</div>
-					</div>
-					<div class="col-lg-12">
-					<div class="sidebar-item recent-posts">
-						<div class="sidebar-heading">
-						<h2>Recent Posts</h2>
-						</div>
-						<div class="content">
-						<ul>
-							<li><a href="post-details.html">
-							<h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
-							<span>May 31, 2020</span>
-							</a></li>
-							<li><a href="post-details.html">
-							<h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-							<span>May 28, 2020</span>
-							</a></li>
-							<li><a href="post-details.html">
-							<h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
-							<span>May 14, 2020</span>
-							</a></li>
-						</ul>
-						</div>
-					</div>
-					</div>
-					<div class="col-lg-12">
-					<div class="sidebar-item categories">
-						<div class="sidebar-heading">
-						<h2>Categories</h2>
-						</div>
-						<div class="content">
-						<ul>
-							<li><a href="#">- Nature Lifestyle</a></li>
-							<li><a href="#">- Awesome Layouts</a></li>
-							<li><a href="#">- Creative Ideas</a></li>
-							<li><a href="#">- Responsive Templates</a></li>
-							<li><a href="#">- HTML5 / CSS3 Templates</a></li>
-							<li><a href="#">- Creative &amp; Unique</a></li>
-						</ul>
-						</div>
-					</div>
-					</div>
-					<div class="col-lg-12">
-					<div class="sidebar-item tags">
-						<div class="sidebar-heading">
-						<h2>Tag Clouds</h2>
-						</div>
-						<div class="content">
-						<ul>
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Creative</a></li>
-							<li><a href="#">HTML5</a></li>
-							<li><a href="#">Inspiration</a></li>
-							<li><a href="#">Motivation</a></li>
-							<li><a href="#">PSD</a></li>
-							<li><a href="#">Responsive</a></li>
-						</ul>
-						</div>
-					</div>
-					</div>
-				</div>
-				</div>
-			</div>
+			<?php require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'elements/sidebar.php' ?>
 		</div>
 	</div>
 </section>

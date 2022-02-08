@@ -12,4 +12,12 @@ class URL {
 		}
 		return (int)$_GET[$name];
 	}
+
+	public static function handleSlugInURL($slug, $indexSlug, $url)
+	{
+		if($slug !== $indexSlug) {
+			http_response_code(301);
+			header('Location:'.$url);
+		}
+	}
 }

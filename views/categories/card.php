@@ -9,8 +9,7 @@ use App\Helpers\Text;
 										<img src="assets/images/blog-thumb-01.jpg" alt="">
 									</div> -->
 									<div class="down-content" style="flex-grow: 1">
-										<?php $firstCategory = $post->getCategories()[0]; ?>
-										<a href="<?= $router->url('category', ['id'=> $firstCategory->getID(), 'slug' => $firstCategory->getSlug()]) ?>"><span><?= $firstCategory->getName() ?></span></a>
+										<a href="<?= $router->url('category', ['id'=> $showCategory->getID(), 'slug' => $showCategory->getSlug()]) ?>"><span><?= $showCategory->getName() ?></span></a>
 										<a href="<?= $router->url('article', ['id'=> $post->getID(), 'slug'=>$post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
 										<ul class="post-info">
 											<!-- <li><a href="#">Admin</a></li> -->

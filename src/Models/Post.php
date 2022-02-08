@@ -54,4 +54,5 @@ class Post {
 	{
 		return $this->categories;
 	}
+
 }
