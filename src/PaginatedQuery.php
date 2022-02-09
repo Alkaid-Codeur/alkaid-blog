@@ -31,11 +31,29 @@ class PaginatedQuery {
 			if($currentPage > $pages) {
 				throw new Exception("Cette page n'existe pas");
 			}
+			$offset = ($this->getCurrentPage() - 1) * $this->perPage;
+			$this->items = $this->pdo->query($this->query . " LIMIT $this->perPage OFFSET $offset")->fetchAll(PDO::FETCH_CLASS, $classMapping);
+		}
+		return $this->items;
+	}
+
+	public function getSeachItems(string $text, string $classMapping) {
+		$currentPage = $this->getCurrentPage();
+		$pages = $this->getPages();
+		if($pages === 0) {
+			return null;
+		}
+		elseif($currentPage > $pages) {
+			throw new Exception("Cette page n'existe pas");
 		}
 		$offset = ($this->getCurrentPage() - 1) * $this->perPage;
-		if($this->items === null) {
-			$this->items = $this->pdo->query($this->query . " LIMIT $this->perPage OFFSET $offset")->fetchAll(PDO::FETCH_CLASS, $classMapping);
-		}	
+		$query = $this->pdo->prepare($this->query  ." LIMIT :limit OFFSET :offset");
+		$query->execute([
+			'search' => "%$text%",
+			'limit' =>$this->perPage,
+			'offset' => $offset
+		]);
+		$this->items = $query->fetchAll(PDO::FETCH_CLASS, $classMapping);
 		return $this->items;
 	}
 

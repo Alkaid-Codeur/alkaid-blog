@@ -1,7 +1,6 @@
 <?php
 
 namespace App;
-
 use AltoRouter;
 
 class Router {
@@ -18,6 +17,19 @@ class Router {
 	{
 		$view = $this->viewPath . DIRECTORY_SEPARATOR . str_replace('.', '/', $path) . '.php';
 		$this->router->map('GET', $route, $view, $name);
+		return $this;
+	}
+
+	public function match($route, $path, $name): self
+	{
+		$view = $this->viewPath . DIRECTORY_SEPARATOR . str_replace('.', '/', $path) . '.php';
+		$this->router->map('GET|POST', $route, $view, $name);
+		return $this;
+	}
+
+	public function post($route, $path, $name): self {
+		$view = $this->viewPath . DIRECTORY_SEPARATOR . str_replace('.', '/', $path) . '.php';
+		$this->router->map('POST', $route, $view, $name);
 		return $this;
 	}
 

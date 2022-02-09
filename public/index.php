@@ -5,7 +5,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 define('DEBUG_TIME', microtime(true));
 
-function e (string $text) {
+function e(string $text) {
 	return htmlentities($text);
 }
 
@@ -31,7 +31,7 @@ $whoops->register();
 $router->get('/', 'main.home', 'home')
 	   ->get('/nous-contacter', 'main.contact', 'contact')
 	   ->get('/a-propos', 'main.about', 'about')
-	   ->get('/articles', 'posts.index', 'posts')
+	   ->match('/articles', 'posts.index', 'posts')
 	   ->get('/article/[*:slug]-[i:id]', 'posts.show', 'article')
 	   ->get('/category/[*:slug]-[i:id]', 'categories.category', 'category')
 	   ->run();

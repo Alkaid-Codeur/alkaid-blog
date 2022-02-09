@@ -9,11 +9,24 @@ final class PostTable extends Table {
 	protected $table  = 'post';
 	protected $class = Post::class;
 
-	public function getPostsWithPagination() {
-		$query = "SELECT * FROM post ORDER BY created_at DESC";
-		$queryCount = "SELECT count(id) FROM post";
-		$paginatedQuery = new PaginatedQuery($this->pdo, $query, $queryCount);
-		$posts = $paginatedQuery->getItems($this->class);
+	/**
+	 * @param array "$_POST"
+	 */
+
+	public function getPostsWithPagination($postElements) {
+		if(isset($postElements['searchText'])) {
+			$searched = e($postElements['searchText']);
+			$query = "SELECT * FROM post WHERE title LIKE :search ORDER BY created_at DESC";
+			$queryCount = "SELECT count(id) FROM post WHERE title LIKE '%$searched%'";
+			$paginatedQuery = new PaginatedQuery($this->pdo, $query, $queryCount);
+			$posts = $paginatedQuery->getSeachItems($postElements['searchText'], $this->class);
+		}
+		else {
+			$query = "SELECT * FROM post ORDER BY created_at DESC";
+			$queryCount = "SELECT count(id) FROM post";
+			$paginatedQuery = new PaginatedQuery($this->pdo, $query, $queryCount);
+			$posts = $paginatedQuery->getItems($this->class);
+		}
 		return [$posts, $paginatedQuery];
 	}
 

@@ -21,13 +21,13 @@ $overviewPosts = (new PostTable($pdo))->getElements(3);
 								</div>
 								<div class="down-content">
 								<span><?= $overviewPost->getCategories()[0]->getName()  ?></span>
-								<a href="post-details.html"><h4><?= $overviewPost->getTitle() ?></h4></a>
+								<a href="<?= $router->url('article', ['id' => $overviewPost->getID(), 'slug' => $overviewPost->getSlug()]) ?>"><h4><?= $overviewPost->getTitle() ?></h4></a>
 								<ul class="post-info">
 									<li><a href="#">Admin</a></li>
 									<li><a href="#"><?= $overviewPost->getCreatedAt()->format('d F Y') ?></a></li>
 									<li><a href="#">12 Comments</a></li>
 								</ul>
-								<p><?= Text::excerpt($overviewPost->getContent(), 200) ?></p>
+								<p><?= e(Text::excerpt($overviewPost->getContent(), 300)) ?></p>
 								<div class="post-options">
 									<div class="row">
 									<div class="col-6">
