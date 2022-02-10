@@ -15,7 +15,7 @@ $post = $postTable->find($id);
 
 $categories = (new CategoryTable($pdo))->getPostCategories($post->getID());
 
-$url = $router->url('article', ['id' => $post->getID(), 'slug' => $post->getSlug()]);
+$url = $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]);
 URL::handleSlugInURL($slug, $post->getSlug(), $url);
 
 ?>

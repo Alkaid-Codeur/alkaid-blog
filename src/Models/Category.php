@@ -4,8 +4,8 @@ namespace App\Models;
 
 class Category {
 	private int $id;
-	private string $name;
-	private string $slug;
+	private string $name = "";
+	private string $slug = "";
 	private int $post_id;
 
 	public function getID(): ?int 
@@ -28,4 +28,26 @@ class Category {
 		return $this->post_id;
 	}
 
+
+	/**
+	 * Set the value of name
+	 *
+	 * @return  self
+	 */ 
+	public function setName($name)
+	{
+		$this->name = $name;
+		return $this;
+	}
+
+	/**
+	 * Set the value of slug
+	 *
+	 * @return  self
+	 */ 
+	public function setSlug($slug)
+	{
+		$this->slug = $slug;
+		return $this;
+	}
 }

@@ -13,7 +13,6 @@ class PaginatedQuery {
 	private int $perPage;
 	private $count = null;
 	private $items;
-	
 
 	public function __construct($pdo, $query, $queryCount, $perPage = 12)
 	{

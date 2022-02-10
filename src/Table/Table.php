@@ -20,7 +20,7 @@ abstract class Table {
 		$this->pdo = $pdo;
 	}
 
-	public function find($id) 
+	public function find($id)
 	{
 		$query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id= :id");
 		$query->execute(['id' => $id]);
@@ -32,6 +32,20 @@ abstract class Table {
 		return $result;
 	}
 
+	public function checkExistence(string $target, string $field, ?int $except = null)
+	{
+		$sql = "SELECT * FROM $this->table WHERE $field = ?";
+		$params = [$field];
+		if($except) {
+			$sql .= " AND id != ?";
+			$params[] = $except;
+		}
+		$query = $this->pdo->prepare($sql);
+		$query->execute($params);
+		$result = $query->fetchAll();
+		return (!empty($result)) ? true : false;
+	}
+
 	private function getOrder(): ?string
 	{
 		if($this->class !== null) {
@@ -41,7 +55,7 @@ abstract class Table {
 					break;
 				
 				case Category::class : 
-					return "name";
+					return "id";
 					break;
 				default: 
 					return null;

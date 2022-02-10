@@ -8,8 +8,6 @@ $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
 $pdo->exec('TRUNCATE TABLE category');
 $pdo->exec('TRUNCATE TABLE post');
 $pdo->exec('TRUNCATE TABLE post_category');
-$pdo->exec('TRUNCATE TABLE subcategory');
-$pdo->exec('TRUNCATE TABLE subcategory');
 $pdo->exec('TRUNCATE TABLE users');
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 1');
 
@@ -37,14 +35,6 @@ for ($i=0; $i<50; $i++) {
 	$content = $faker->paragraphs(rand(8, 15), true);
 	$pdo->query("INSERT INTO post (slug, title, created_at, author_id, content) VALUES ('{$slug}', '{$title}', '{$created_at}', $user_id , '{$content}')");
 	$posts[] = $pdo->lastInsertId();
-}
-
-foreach($categories as $category) {
-	$randsubs = rand(2, 10);
-	for($i = 0; $i < $randsubs; $i++) {
-		$word = str_replace(' ', '', $faker->words(2, true));
-		$pdo->query("INSERT INTO subcategory (cat_id, sub_name, sub_slug) VALUES ('{$category}', '{$word}', '{$faker->slug(2)}')");
-	}
 }
 
 foreach($posts as $post) {

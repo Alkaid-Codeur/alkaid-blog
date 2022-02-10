@@ -20,7 +20,7 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 							<div class="meta-category">
 								<span><?= $post->getCategories()[0]->getName() ?></span>
 							</div>
-							<a href="<?= $router->url('article', ['id' => $post->getID(), 'slug' => $post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
+							<a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
 							<ul class="post-info">
 							<li><a href="#">Admin</a></li>
 							<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>

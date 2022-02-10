@@ -28,10 +28,22 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
+// Routes any-user : 
 $router->get('/', 'main.home', 'home')
 	   ->get('/nous-contacter', 'main.contact', 'contact')
 	   ->get('/a-propos', 'main.about', 'about')
 	   ->match('/articles', 'posts.index', 'posts')
-	   ->get('/article/[*:slug]-[i:id]', 'posts.show', 'article')
+	   ->get('/article/[*:slug]-[i:id]', 'posts.show', 'post')
 	   ->get('/category/[*:slug]-[i:id]', 'categories.category', 'category')
+
+	   // ROUTES ADMINISTRATION
+
+	   // Gestion des articles CRUD
+	   ->get('/admin', 'admin.posts.index', 'admin_index')
+
+	   // GESTION DES CATEGORIES CRUD
+	   ->get('/admin/categories', 'admin.categories.index', 'admin_categories')
+	   ->post('/admin/category/[i:id]/delete/', 'admin.categories.delete', 'category_delete')
+	   ->match('/admin/category/[i:id]/update/', 'admin.categories.edit', 'category_edit')
+	   ->match('/admin/category/new', 'admin.categories.new', 'category_create')
 	   ->run();

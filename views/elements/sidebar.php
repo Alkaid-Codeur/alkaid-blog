@@ -27,7 +27,7 @@ $sidebarCategories = (new CategoryTable($pdo))->getElements();
 							<div class="content">
 							<ul>
 								<?php foreach($sidebarPosts as $post): ?>
-									<li><a href="<?= $router->url('article', ['id' => $post->getID(), 'slug' => $post->getSlug()])?>">
+									<li><a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()])?>">
 									<h5><?= $post->getTitle() ?></h5>
 									<span><?= $post->getCreatedAt()->format('d F Y') ?></span>
 									</a></li>

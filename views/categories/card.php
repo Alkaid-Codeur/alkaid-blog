@@ -10,7 +10,7 @@ use App\Helpers\Text;
 									</div> -->
 									<div class="down-content" style="flex-grow: 1">
 										<a href="<?= $router->url('category', ['id'=> $showCategory->getID(), 'slug' => $showCategory->getSlug()]) ?>"><span><?= $showCategory->getName() ?></span></a>
-										<a href="<?= $router->url('article', ['id'=> $post->getID(), 'slug'=>$post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
+										<a href="<?= $router->url('post', ['id'=> $post->getID(), 'slug'=>$post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
 										<ul class="post-info">
 											<!-- <li><a href="#">Admin</a></li> -->
 											<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>

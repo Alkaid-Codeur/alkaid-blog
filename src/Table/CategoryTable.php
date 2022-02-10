@@ -6,7 +6,7 @@ use PDO;
 use App\Models\Category;
 use Exception;
 
-final class categoryTable extends Table {
+final class CategoryTable extends Table {
 
 	protected $table = 'category';
 	protected $class = Category::class;
@@ -38,5 +38,26 @@ final class categoryTable extends Table {
 		$query->execute(['id' => $postID]);
 		$categories = $query->fetchAll(PDO::FETCH_CLASS, Category::class);
 		return $categories;
+	}
+
+	public function delete($id) {
+		$query = $this->pdo->prepare("DELETE FROM $this->table WHERE id = :id");
+		$well = $query->execute(['id' => $id]);
+		if($well === false) {
+			throw new Exception("Impossible de supprimer la catégorie");
+		}
+	}
+
+	public function update(Category $category) {
+		$query = $this->pdo->prepare("UPDATE $this->table SET name = :name, slug = :slug WHERE id = :id
+		");
+		$well = $query->execute([
+			'name' => $category->getName(),
+			'slug' => $category->getSlug(),
+			'id' => $category->getID()
+		]);
+		if($well === false) {
+			throw new Exception("Impossible de modifier la catégorie");
+		}
 	}
 }

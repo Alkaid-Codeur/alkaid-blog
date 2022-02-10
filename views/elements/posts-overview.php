@@ -21,7 +21,7 @@ $overviewPosts = (new PostTable($pdo))->getElements(3);
 								</div>
 								<div class="down-content">
 								<span><?= $overviewPost->getCategories()[0]->getName()  ?></span>
-								<a href="<?= $router->url('article', ['id' => $overviewPost->getID(), 'slug' => $overviewPost->getSlug()]) ?>"><h4><?= $overviewPost->getTitle() ?></h4></a>
+								<a href="<?= $router->url('post', ['id' => $overviewPost->getID(), 'slug' => $overviewPost->getSlug()]) ?>"><h4><?= $overviewPost->getTitle() ?></h4></a>
 								<ul class="post-info">
 									<li><a href="#">Admin</a></li>
 									<li><a href="#"><?= $overviewPost->getCreatedAt()->format('d F Y') ?></a></li>

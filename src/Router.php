@@ -45,14 +45,16 @@ class Router {
 		if($match !== false && $match !== null) {
 			$view = $match['target'];
 			$params = $match['params'];
+			$isAdmin = str_contains($view, 'admin');
 		}
 		else
 		{
 			$view = $this->viewPath . DIRECTORY_SEPARATOR . 'main/e404.php';
 		}
+		$layout = (isset($isAdmin) && $isAdmin) ? "admin/layouts/default.php" : "layouts/default.php";
 		ob_start();
 		require $view;
 		$pageContent = ob_get_clean();
-		require $this->viewPath . DIRECTORY_SEPARATOR . 'layouts/default.php'; 
+		require $this->viewPath . DIRECTORY_SEPARATOR . $layout; 
 	}
 }
