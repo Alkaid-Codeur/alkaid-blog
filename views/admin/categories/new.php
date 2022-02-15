@@ -1,7 +1,28 @@
 <?php
 
+use App\PDOConnection;
 use App\Models\Category;
+use App\Table\CategoryTable;
+use App\Validator\CategoryValidator;
+
+$pdo = PDOConnection::getPDO();
 $category = new Category;
+$categoryTable = new CategoryTable($pdo);
+$success = false;
+$errors = [];
+
+if(!empty($_POST)) {
+	$category->setName($_POST['name'])->setSlug($_POST['slug']);
+	$v = new CategoryValidator($_POST, $categoryTable);
+	if($v->validate()) {
+		$categoryTable->insert($category);
+		$success = true;
+		header('Location:'. $router->url('admin_categories') . '?insert=1');
+	}
+	else {
+		$errors = $v->getErrors();
+	}
+}
 
 ?>
 <div class="heading-page header-text">

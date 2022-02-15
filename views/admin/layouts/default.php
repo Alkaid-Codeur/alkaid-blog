@@ -41,7 +41,7 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item <?= ((str_contains($_SERVER['REQUEST_URI'], 'post')) || $_SERVER['REQUEST_URI'] === "/admin") ? "active": "" ?>">
-					<a class="nav-link" href="<?= $router->url('posts') ?> ">Articles</a>
+					<a class="nav-link" href="<?= $router->url('admin_posts') ?> ">Articles</a>
 				</li>			
 				<li class="nav-item <?= (str_contains($_SERVER['REQUEST_URI'], 'categor'))? "active": "" ?>">
 					<a class="nav-link" href="<?= $router->url('admin_categories') ?> ">Categories</a>

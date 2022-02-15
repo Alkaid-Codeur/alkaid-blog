@@ -3,7 +3,7 @@
 namespace App\Models;
 
 class Category {
-	private int $id;
+	private int $id = 0;
 	private string $name = "";
 	private string $slug = "";
 	private int $post_id;

@@ -26,12 +26,17 @@ $categories = (new CategoryTable($pdo))->getElements();
 <div class="container" style="margin-top: 70px">
 	<?php if(isset($_GET['delete'])): ?>
 		<div class="alert alert-success">
-			L'enregistement a bien été supprimé !
+			La catégorie <strong><em><?= $_GET['deletedItem'] ?></em></strong> a été supprimée !
 		</div>
 	<?php endif ?>
-	<?php if(isset($_GET['update'])): ?>
+	<?php if(isset($_GET['edit'])): ?>
 		<div class="alert alert-success">
-			L'enregistement a bien été modifié !
+			La catégorie <strong><em><?= $_GET['editedItem'] ?></em></strong> a été mise à jour !
+		</div>
+	<?php endif ?>
+	<?php if(isset($_GET['insert'])): ?>
+		<div class="alert alert-success">
+			L'enregistement a bien été éffectué !
 		</div>
 	<?php endif ?>
 	<div class="col-lg-12">

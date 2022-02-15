@@ -32,18 +32,19 @@ abstract class Table {
 		return $result;
 	}
 
-	public function checkExistence(string $target, string $field, ?int $except = null)
+	public function checkExistence(string $field, string $target, ?int $except = null)
 	{
-		$sql = "SELECT * FROM $this->table WHERE $field = ?";
-		$params = [$field];
+		$sql = "SELECT count(id) as count FROM $this->table WHERE $field = ?";
+		$params = [$target];
 		if($except) {
 			$sql .= " AND id != ?";
 			$params[] = $except;
 		}
 		$query = $this->pdo->prepare($sql);
 		$query->execute($params);
-		$result = $query->fetchAll();
-		return (!empty($result)) ? true : false;
+		$query->setFetchMode(PDO::FETCH_COLUMN, 0);
+		$result = (int) $query->fetch();
+		return ($result > 0) ? true : false;
 	}
 
 	private function getOrder(): ?string

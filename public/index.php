@@ -39,7 +39,7 @@ $router->get('/', 'main.home', 'home')
 	   // ROUTES ADMINISTRATION
 
 	   // Gestion des articles CRUD
-	   ->get('/admin', 'admin.posts.index', 'admin_index')
+	   ->get('/admin', 'admin.posts.index', 'admin_posts')
 
 	   // GESTION DES CATEGORIES CRUD
 	   ->get('/admin/categories', 'admin.categories.index', 'admin_categories')

@@ -60,4 +60,15 @@ final class CategoryTable extends Table {
 			throw new Exception("Impossible de modifier la catégorie");
 		}
 	}
+
+	public function insert(Category $category) {
+		$query = $this->pdo->prepare("INSERT INTO $this->table (name, slug) VALUES (:name, :slug)");
+		$well = $query->execute([
+			'name' => $category->getName(),
+			'slug' => $category->getSlug()
+		]);
+		if($well === false) {
+			throw new Exception("Impossible d'éffectuer l'enregistrement");
+		}
+	}
 }

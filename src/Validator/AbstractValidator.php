@@ -6,13 +6,14 @@ use Valitron\Validator;
 
 abstract class AbstractValidator {
 
-	private $data;
-	private $validator;
+	protected $data;
+	protected $validator;
 
 	public function __construct($data)
 	{
 		$this->data = $data;
 		$this->validator = new Validator($data);
+		Validator::lang('fr');
 	}
 
 	public function validate(): bool 

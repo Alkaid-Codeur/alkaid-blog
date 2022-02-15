@@ -12,20 +12,13 @@ $pdo = PDOConnection::getPDO();
  * @var CategoryTable
  */
 $categoryTable = new CategoryTable($pdo);
-$check = $categoryTable->checkExistence('providentpossimus', 'name');
-dd($check);
 $category = $categoryTable->find($id);
 $success = false;
 $errors = [];
 if(!empty($_POST)) {
-	$category->setName($_POST['title'])
+	$category->setName($_POST['name'])
 			  ->setSlug($_POST['slug']);
-	// $v = new Validator($_POST);
-	// $v->rule('required', ['title', 'slug']);
-	// $v->rule('lengthBetween', 'title', 3, 50);
-	// $v->rule('lengthBetween', 'slug', 5, 100);
-	// $v->rule('slug', 'slug');
-	$v = new CategoryValidator($_POST);
+	$v = new CategoryValidator($_POST, $categoryTable, $category->getID());
 	if ($v->validate()) {
 		$categoryTable->update($category);
 		$success = true;
@@ -33,7 +26,6 @@ if(!empty($_POST)) {
 	else {
 		$errors = $v->getErrors();
 	}
-
 }
 
 ?>
@@ -57,7 +49,9 @@ if(!empty($_POST)) {
 	<?php if(!empty($_POST)): ?>
 		<?php if($success): ?>
 			<?php 
-				header('Location:' . $router->url('admin_categories') . '?update=1');
+				$urlParams = ['edit' => 1, 'editedItem' => $category->getName()];
+				$url = $router->url('admin_categories') . '?' . http_build_query($urlParams);
+				header('Location:' . $url);
 				exit();
 			?>
 		<?php else: ?>
