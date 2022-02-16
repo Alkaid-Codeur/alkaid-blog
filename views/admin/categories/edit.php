@@ -1,5 +1,6 @@
 <?php
 
+use App\HTML\Form;
 use App\PDOConnection;
 use App\Table\CategoryTable;
 use App\Validator\CategoryValidator;

@@ -1,7 +1,8 @@
 <?php
 use App\PDOConnection;
-use App\Table\CategoryTable;
 use App\Table\PostTable;
+use App\Table\UserTable;
+use App\Table\CategoryTable;
 
 $pdo = PDOConnection::getPDO();
 
@@ -51,6 +52,7 @@ $link = $router->url('posts');
 					<div class="all-blog-posts">
 						<div class="row" style="align-items: stretch">
 							<?php foreach($posts as $post): ?>
+								<?php $author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername(); ?>
 								<?php require 'card.php' ?>
 							<?php endforeach ?>
 							<div class="col-lg-12">

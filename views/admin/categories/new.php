@@ -1,5 +1,6 @@
 <?php
 
+use App\HTML\Form;
 use App\PDOConnection;
 use App\Models\Category;
 use App\Table\CategoryTable;
@@ -22,6 +23,7 @@ if(!empty($_POST)) {
 	else {
 		$errors = $v->getErrors();
 	}
+
 }
 
 ?>

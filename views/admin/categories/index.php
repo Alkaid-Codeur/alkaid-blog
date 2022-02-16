@@ -57,7 +57,7 @@ $categories = (new CategoryTable($pdo))->getElements();
 				<td><i><?= $category->getSlug() ?></i></td>
 				<td>
 					<a href="<?= $router->url('category_edit', ['id' => $category->getID()]) ?>" class="btn btn-info">Modifier</a>
-					<form action="<?= $router->url('category_delete', ['id' => $category->getID()]) ?>" method="post" onsubmit="confirm(`Voulez vous supprimer cet element ?`)" style="display: inline">
+					<form action="<?= $router->url('category_delete', ['id' => $category->getID()]) ?>" method="post" onsubmit=" return confirm(`Voulez vous supprimer cet element ?`)" style="display: inline">
 						<button type="submit" class="btn btn-danger">Supprimer</button>
 					</form>
 				</td>

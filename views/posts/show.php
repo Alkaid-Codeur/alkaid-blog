@@ -2,8 +2,9 @@
 
 use App\Helpers\URL;
 use App\PDOConnection;
-use App\Table\CategoryTable;
 use App\Table\PostTable;
+use App\Table\UserTable;
+use App\Table\CategoryTable;
 
 $title = "Article";
 $pdo = PDOConnection::getPDO();
@@ -12,7 +13,7 @@ $slug = $params['slug'];
 
 $postTable = new PostTable($pdo);
 $post = $postTable->find($id);
-
+$author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername();
 $categories = (new CategoryTable($pdo))->getPostCategories($post->getID());
 
 $url = $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]);
@@ -58,7 +59,7 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 									<?php endforeach ?>
 								<a href="post-details.html"><h4>Aenean pulvinar gravida sem nec</h4></a>
 								<ul class="post-info">
-									<!-- <li><a href="#">Admin</a></li> -->
+									<li><a href="#"><?= $author ?></a></li>
 									<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
 									<!-- <li><a href="#">10 Comments</a></li> -->
 								</ul>

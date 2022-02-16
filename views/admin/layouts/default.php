@@ -6,8 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?= $title ?? "Alkaid-Blog" ?></title>
+	<link rel="stylesheet" href="/assets/vendor/select/css/select2.min.css">
 	<meta name="description" content="">
-	<meta name="author" content="TemplateMo">
+	<meta name="author" content="CodHub">
 	<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet"> -->
 
 	<!-- Bootstrap core CSS -->
@@ -18,6 +19,16 @@
 	<link rel="stylesheet" href="/assets/css/fontawesome.css">
 	<link rel="stylesheet" href="/assets/css/templatemo-stand-blog.css">
 	<link rel="stylesheet" href="/assets/css/owl.css">
+
+	<style>
+		.table thead th {
+			vertical-align: middle !important;
+		}
+
+		.table .th-center {
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
 	<!-- ***** Preloader Start ***** -->
@@ -81,6 +92,7 @@
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="/assets/vendor/select/js/select2.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Additional Scripts -->

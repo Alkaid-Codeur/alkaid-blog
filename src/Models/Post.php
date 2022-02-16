@@ -5,17 +5,19 @@ namespace App\Models;
 use DateTime;
 
 class Post {
-	private int $id;
-	private string $title;
-	private string $slug;
-	private string $created_at;
-	private int $author_id;
-	private string $content;
+	private $id;
+	private $title;
+	private $slug;
+	private $created_at;
+	private $author_id;
+	private $content;
 
 	/**
 	 * @var Category[]
 	 */
 	private $categories = [];
+
+	private $medias = [];
 
 	public function getID(): ?int
 	{
@@ -55,4 +57,11 @@ class Post {
 		return $this->categories;
 	}
 
+	/**
+	 * Get the value of medias
+	 */ 
+	public function getMedias(): array
+	{
+		return $this->medias;
+	}
 }

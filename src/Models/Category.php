@@ -3,10 +3,14 @@
 namespace App\Models;
 
 class Category {
-	private int $id = 0;
-	private string $name = "";
-	private string $slug = "";
-	private int $post_id;
+
+	private $id;
+
+	private $name;
+	
+	private $slug;
+	
+	private $post_id;
 
 	public function getID(): ?int 
 	{
@@ -27,7 +31,6 @@ class Category {
 	{
 		return $this->post_id;
 	}
-
 
 	/**
 	 * Set the value of name

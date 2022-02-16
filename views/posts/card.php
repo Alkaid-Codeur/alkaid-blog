@@ -13,7 +13,7 @@ use App\Helpers\Text;
 										<a href="<?= $router->url('category', ['id'=> $firstCategory->getID(), 'slug' => $firstCategory->getSlug()]) ?>"><span><?= $firstCategory->getName() ?></span></a>
 										<a href="<?= $router->url('post', ['id'=> $post->getID(), 'slug'=>$post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
 										<ul class="post-info">
-											<!-- <li><a href="#">Admin</a></li> -->
+											<li><a href="#"><?= $author ?></a></li>
 											<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
 											<!-- <li><a href="#">12 Comments</a></li> -->
 										</ul>

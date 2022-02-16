@@ -36,7 +36,7 @@ final class CategoryTable extends Table {
 			FROM category c, post p, post_category pc
 			WHERE p.id = pc.post_id AND pc.category_id = c.id AND p.id = :id");
 		$query->execute(['id' => $postID]);
-		$categories = $query->fetchAll(PDO::FETCH_CLASS, Category::class);
+		$categories = $query->fetchAll(PDO::FETCH_CLASS, $this->class);
 		return $categories;
 	}
 

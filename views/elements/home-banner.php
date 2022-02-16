@@ -1,8 +1,9 @@
 <?php
 
 use App\PDOConnection;
-use App\Table\CategoryTable;
 use App\Table\PostTable;
+use App\Table\UserTable;
+use App\Table\CategoryTable;
 $pdo = PDOConnection::getPDO();
 
 $bannerPosts = (new PostTable($pdo))->getElements(10);
@@ -13,6 +14,7 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 	<div class="container-fluid">
 		<div class="owl-banner owl-carousel">
 			<?php foreach($bannerPosts as $post): ?>
+				<?php $author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername(); ?>
 				<div class="item">
 					<img src="assets/images/banner-item-01.jpg" alt="">
 					<div class="item-content">
@@ -22,7 +24,7 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 							</div>
 							<a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
 							<ul class="post-info">
-							<li><a href="#">Admin</a></li>
+							<li><a href="#"><?= $author ?></a></li>
 							<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
 							<li><a href="#">12 Comments</a></li>
 							</ul>

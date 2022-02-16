@@ -9,5 +9,5 @@ $form = new Form($category, $errors);
 	<?= $form->textInput('name', 'Nom de la catégorie', $category) ?>
 	<?= $form->textInput('slug', 'Slug pour la catégorie', $category) ?>
 	
-	<button type="submit" class="btn btn-primary"><?= ($category->getID() === 0) ? "Enregistrer" : "Modifier" ?></button>
+	<button type="submit" class="btn btn-primary"><?= ($category->getID() !== null) ? "Modifier" : "Enregistrer" ?></button>
 </form>

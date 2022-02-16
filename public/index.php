@@ -40,10 +40,14 @@ $router->get('/', 'main.home', 'home')
 
 	   // Gestion des articles CRUD
 	   ->get('/admin', 'admin.posts.index', 'admin_posts')
+	   ->get('/admin/post/[*:slug]-[i:id]', 'admin.posts.show', 'admin_post_view')
+	   ->post('/admin/post/[i:id]/delete', 'admin.posts.delete', 'post_delete')
+	   ->match('/admin/post/[i:id]/edit', 'admin.posts.edit', 'post_edit')
+	   ->match('/admin/post/new', 'admin.posts.new', 'post_create')
 
 	   // GESTION DES CATEGORIES CRUD
 	   ->get('/admin/categories', 'admin.categories.index', 'admin_categories')
-	   ->post('/admin/category/[i:id]/delete/', 'admin.categories.delete', 'category_delete')
-	   ->match('/admin/category/[i:id]/update/', 'admin.categories.edit', 'category_edit')
+	   ->post('/admin/category/[i:id]/delete', 'admin.categories.delete', 'category_delete')
+	   ->match('/admin/category/[i:id]/update', 'admin.categories.edit', 'category_edit')
 	   ->match('/admin/category/new', 'admin.categories.new', 'category_create')
 	   ->run();
