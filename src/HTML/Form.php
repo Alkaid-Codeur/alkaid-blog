@@ -47,7 +47,12 @@ class Form {
 		$selected = [];
 		$fieldValues = $this->fillField($field);
 		foreach($fieldValues as $value) {
-			$selected[] = $value->getID();
+			if(is_object($value)) {
+				$selected[] = $value->getID();
+			}
+			else {
+				$selected[] = $value;
+			}
 		}
 		foreach($categories as $category) {
 			$isSelected = (in_array($category->getID(), $selected)) ? "selected" : "";
@@ -55,13 +60,15 @@ class Form {
 			$name = ucfirst($category->getName());
 			$options[] = "<option value=\"$id\" $isSelected>$name</option>";
 		}
+		$fieldName = $field.'[]';
 		$menu = implode('', $options);
 		return <<<HTML
 			<div class="form-group mt-3">
 				<label for="$field">$label</label>
-				<select class="form-control basic-multiple-select" name="$field" id="$field" multiple>
+				<select class="{$this->getInputClass('form-control basic-multiple-select', $field)}" name="$fieldName" id="$field" multiple required>
 					$menu
 				</select>
+				{$this->getFeedback($field)}
 			</div>
 
 		HTML;
@@ -69,8 +76,29 @@ class Form {
 
 	public function insertMedias($field, $label) {
 		return <<<HTML
+			<div class="input-group mb-3">
+				<label class="input-group-text" for="$field">$label</label>
+				<input type="file" class="{$this->getInputClass('form-control files-input', $field)}" id="$field" name="{$field}[]" accept="image/*" multiple>
+				{$this->getFeedback($field)}
+				<div id="input-preview" class="container"></div>
+			</div>
+		HTML;
+	}
 
-		
+	public function checkMode($field, $label1, $label2) {
+		return <<<HTML
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="$field" id="radio{$field}1" value="{$field}1" checked>
+				<label class="form-check-label" for="radio{$field}1">
+					$label1
+				</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="$field" id="radio{$field}2" value="{$field}2">
+				<label class="form-check-label" for="radio{$field}2">
+					$label2
+				</label>
+			</div>
 		HTML;
 	}
 

@@ -4,18 +4,47 @@ use App\Models\Post;
 use App\PDOConnection;
 use App\Table\CategoryTable;
 use App\Table\PostTable;
+use App\Validator\PostValidator;
 
 $id = $params['id'];
 $pdo = PDOConnection::getPDO();
-$post = (new PostTable($pdo))->find($id);
+$postTable = new PostTable($pdo);
+$post = $postTable->find($id);
 $categories = (new CategoryTable($pdo))->getElements();
 (new CategoryTable($pdo))->hydratePosts([$post]);
 $success = false;
 $errors = [];
 
 if(!empty($_POST)) {
-
+	$datas = array_merge($_POST, $_FILES);
+	$v = new PostValidator($datas, $postTable, $post->getID());
+	$post->setTitle($_POST['title'])
+		 ->setSlug($_POST['slug'])
+		 ->setCategories($_POST['categories'] ?? [])
+		 ->setContent($_POST['content']);
+	if($v->validate()) {
+		foreach($_FILES['medias']['name'] as $key=>$value) {
+			if($_FILES['medias']['size'][$key] <= 10000000) {
+				$upload_extension = (pathinfo($value))['extension'];
+				$enabled_extensions = ['png', 'svg', 'jpg', 'gif', 'jpeg', 'webp'];
+				if(in_array($upload_extension, $enabled_extensions)) {
+					$upload_dir = dirname(dirname(dirname(__DIR__))) . '/public/storage/';
+					$name = "article{$post->getID()}_". str_replace(' ', '', basename($_FILES['medias']['name'][$key]));
+					$mv_file = move_uploaded_file($_FILES['medias']['tmp_name'][$key], "{$upload_dir}{$name}");
+					$mediasList = [];
+					if($mv_file !== false) {
+						$mediasList[] = $name;
+					}
+					$post->setMedias($mediasList);
+				}
+			}
+		}
+	}
+	else {
+		$errors = $v->getErrors();
+	}
 }
+
 
 ?>
 

@@ -28,6 +28,21 @@
 		.table .th-center {
 			text-align: center;
 		}
+
+		#input-preview {
+			margin-top: 20px;
+			margin-bottom: 10px;
+			display: flex;
+			align-items: stretch;
+		}
+
+		#input-preview .obj {
+			display: block;
+			padding: 15px;
+			width: 100%;
+			height: 170px;
+			object-fit: contain;
+		}
 	</style>
 </head>
 <body>
