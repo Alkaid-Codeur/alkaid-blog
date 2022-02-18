@@ -18,7 +18,7 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 			<?php foreach($bannerPosts as $post): ?>
 				<?php $author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername(); ?>
 				<div class="item">
-					<img src="storage/post_images/<?= $post->getMedias()[0] ?? "default.jpg" ?>" alt="">
+					<img src="storage/post_images/<?= $post->getMedias()[0] ?>" alt="">
 					<div class="item-content">
 						<div class="main-content">
 							<div class="meta-category">
@@ -28,7 +28,7 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 							<ul class="post-info">
 							<li><a href="#"><?= $author ?></a></li>
 							<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
-							<li><a href="#">12 Comments</a></li>
+							<!-- <li><a href="#">12 Comments</a></li> -->
 							</ul>
 						</div>
 					</div>

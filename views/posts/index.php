@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Post;
+use App\PaginatedQuery;
 use App\PDOConnection;
 use App\Table\PostTable;
 use App\Table\UserTable;
@@ -9,6 +12,7 @@ $pdo = PDOConnection::getPDO();
 [$posts, $paginatedQuery] = (new PostTable($pdo))->getPostsWithPagination($_POST);
 if($posts !== null) {
 	(new CategoryTable($pdo))->hydratePosts($posts);	
+	(new PostTable($pdo))->getPostMedias($posts);
 }
 
 $link = $router->url('posts');

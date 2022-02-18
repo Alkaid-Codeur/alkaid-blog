@@ -281,6 +281,7 @@ header .navbar {
 .owl-banner .item img {
 	height: 100%;
 	object-fit: cover;
+	filter: brightness(0.7);
 }
 
 .owl-banner .item .item-content {
@@ -420,7 +421,17 @@ header .navbar {
 	margin-bottom: 30px;
 }
 
-.blog-posts .blog-thumb img {
+.gallery-carousel .item .gallery-img {
+	height: 100%;
+}
+
+.blog-posts .blog-thumb img{
+	width: 100%;
+	object-fit: cover;
+	height: 300px;
+}
+
+.blog-posts .blog-thumb .img-overview {
 	width: 100%;
 	height: 500px;
 	object-fit: cover;
@@ -544,7 +555,7 @@ ul.page-numbers {
 
 ul.page-numbers li {
 	display: inline-block;
-	margin: 0px 5px;
+	margin: 10px 5px;
 }
 
 ul.page-numbers li a {
@@ -1122,7 +1133,7 @@ footer p a:hover {
 }
 
 @media (max-width: 480px) {
-	.blog-posts .blog-thumb img {
+	.blog-posts .blog-thumb .img-overview {
 		height: 350px;
 	}
 

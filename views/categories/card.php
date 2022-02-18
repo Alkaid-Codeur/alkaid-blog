@@ -5,9 +5,9 @@ use App\Helpers\Text;
 ?>
 <div class="col-lg-6" style="display: flex">
 								<div class="blog-post" style="display: flex; flex-direction: column;">
-									<!-- <div class="blog-thumb">
-										<img src="assets/images/blog-thumb-01.jpg" alt="">
-									</div> -->
+									<div class="blog-thumb">
+										<img src="/storage/post_images/<?= $post->getMedias()[0]?>" alt="Image d'article">
+									</div>
 									<div class="down-content" style="flex-grow: 1">
 										<a href="<?= $router->url('category', ['id'=> $showCategory->getID(), 'slug' => $showCategory->getSlug()]) ?>"><span><?= $showCategory->getName() ?></span></a>
 										<a href="<?= $router->url('post', ['id'=> $post->getID(), 'slug'=>$post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>

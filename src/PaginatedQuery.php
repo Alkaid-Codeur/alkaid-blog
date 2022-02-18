@@ -46,11 +46,10 @@ class PaginatedQuery {
 			throw new Exception("Cette page n'existe pas");
 		}
 		$offset = ($this->getCurrentPage() - 1) * $this->perPage;
-		$query = $this->pdo->prepare($this->query  ." LIMIT :limit OFFSET :offset");
+		$query = $this->pdo->prepare($this->query . " LIMIT $this->perPage OFFSET $offset");
+		//dd($query, $text, $this->perPage, $offset);
 		$query->execute([
-			'search' => "%$text%",
-			'limit' =>$this->perPage,
-			'offset' => $offset
+			'search' => "%{$text}%"
 		]);
 		$this->items = $query->fetchAll(PDO::FETCH_CLASS, $classMapping);
 		return $this->items;

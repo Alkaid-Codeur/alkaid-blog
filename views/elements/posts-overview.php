@@ -9,7 +9,7 @@ use App\Table\categoryTable;
 $pdo = PDOConnection::getPDO();
 $overviewPosts = (new PostTable($pdo))->getElements(3);
 (new categoryTable($pdo))->hydratePosts($overviewPosts);
-
+(new PostTable($pdo))->getPostMedias($overviewPosts);
 ?>
 
 <div class="all-blog-posts">
@@ -19,7 +19,7 @@ $overviewPosts = (new PostTable($pdo))->getElements(3);
 						<div class="col-lg-12">
 							<div class="blog-post">
 								<div class="blog-thumb">
-									<img src="assets/images/blog-post-01.jpg" alt="">
+									<img src="storage/post_images/<?= $overviewPost->getMedias()[0] ?>" alt="Image article" class="img-overview">
 								</div>
 								<div class="down-content">
 								<span><?= $overviewPost->getCategories()[0]->getName()  ?></span>
@@ -27,19 +27,19 @@ $overviewPosts = (new PostTable($pdo))->getElements(3);
 								<ul class="post-info">
 									<li><a href="#"><?= $author ?></a></li>
 									<li><a href="#"><?= $overviewPost->getCreatedAt()->format('d F Y') ?></a></li>
-									<li><a href="#">12 Comments</a></li>
+									<!-- <li><a href="#">12 Comments</a></li> -->
 								</ul>
 								<p><?= e(Text::excerpt($overviewPost->getContent(), 300)) ?></p>
 								<div class="post-options">
 									<div class="row">
-									<div class="col-6">
+									<div class="col-sm-6">
 										<ul class="post-tags">
 										<li><i class="fa fa-tags"></i></li>
 										<li><a href="#">Beauty</a>,</li>
 										<li><a href="#">Nature</a></li>
 										</ul>
 									</div>
-									<div class="col-6">
+									<div class="col-sm-6">
 										<ul class="post-share">
 										<li><i class="fa fa-share-alt"></i></li>
 										<li><a href="#">Facebook</a>,</li>

@@ -29,7 +29,15 @@ $link = $router->url('admin_posts');
 			L'article a été supprimé !
 		</div>
 	<?php endif ?>
+	<?php if(isset($_GET['insert'])): ?>
+		<div class="alert alert-success">
+			L'article a été enregistré !
+		</div>
+	<?php endif ?>
 	<div class="col-lg-12">
+		<div class="">
+			<button class="btn btn-dark" style="display: block; width: fit-content; width: -moz-fit-content; margin: 20px auto"><a href="<?= $router->url('post_create') ?>" style="color: #fff">Creer un article</a></button>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>

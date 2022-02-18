@@ -47,7 +47,7 @@ $categories = (new CategoryTable($pdo))->getPostCategories($post->getID());
 								<div class="blog-thumb owl-carousel gallery-carousel">
 									<?php foreach($post->getMedias() as $media): ?>
 										<div class="item">
-											<img src="/storage/<?= $media ?>" alt="Image article">
+											<img class="gallery-img" src="/storage/post_images/<?= $media ?>" alt="Image article">
 										</div>
 									<?php endforeach ?>
 								</div>

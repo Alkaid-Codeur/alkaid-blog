@@ -3,9 +3,11 @@
 namespace App\Table;
 
 use PDO;
+use DateTime;
 use Exception;
 use App\Models\Post;
 use App\PaginatedQuery;
+use Faker\Provider\Lorem;
 
 final class PostTable extends Table {
 	protected $table  = 'post';
@@ -75,6 +77,16 @@ final class PostTable extends Table {
 		};
 	}
 
+	/**
+	 * Edition d'un article
+	 * 		Modification de l'article
+	 * 		Supprssion des catégories liées
+	 * 		Ajoout des nouvelles catégories
+	 * 		SI updateMode = 1 (Fusion des images) : Ajouter les images à la BDD
+	 * 		SINON SI updateMode = 2 (Remplacer les images) : Supprimer les images de la BDD et du storage et 
+	 * 			ajouter lkes nouvelles
+	 */
+
 	public function editPost(Post $post, string $updateMode) {
 		$query = $this->pdo->prepare("UPDATE {$this->table} 
 								SET title = :title,
@@ -92,6 +104,7 @@ final class PostTable extends Table {
 			throw new Exception("Impossible d'éffectuer la modification");
 		}
 
+		// Mise à jour des catégories
 		$query = $this->pdo->query("DELETE FROM post_category WHERE post_id = {$post->getID()}");
 		foreach($post->getCategories() as $category) {
 			$query = $this->pdo->prepare('INSERT INTO post_category VALUES (:post_id, :category_id)');
@@ -101,6 +114,7 @@ final class PostTable extends Table {
 			]);
 		}
 
+		// Mise à jour des images
 		if($updateMode === "updateMode1") {
 			foreach($post->getMedias() as $media) {
 				$query = $this->pdo->prepare("INSERT INTO post_media VALUES (:post_id, :url)");
@@ -111,6 +125,17 @@ final class PostTable extends Table {
 			}
 		}
 		else if ($updateMode === "updateMode2") {
+			$query = $this->pdo->query("SELECT url FROM post_media WHERE post_id = {$post->getID()}");
+			$urls = $query->fetchAll(PDO::FETCH_COLUMN);
+			if(count($urls) > 0) {
+				$file_path = (dirname(dirname(__DIR__)). DIRECTORY_SEPARATOR . 'public/storage/post_images/');
+				foreach($urls as $url) {
+					$file = "{$file_path}{$url}";
+					if(file_exists($file)) {
+						unlink($file);
+					}
+				}
+			}
 			$query = $this->pdo->query("DELETE FROM post_media WHERE post_id = {$post->getID()}");
 			foreach($post->getMedias() as $media) {
 				$query = $this->pdo->prepare("INSERT INTO post_media VALUES (:post_id, :url)");
@@ -121,6 +146,40 @@ final class PostTable extends Table {
 			}
 		}
 
+	}
+
+	public function insertPost($post) 
+	{
+		$query = $this->pdo->prepare("INSERT INTO post (title, slug, created_at, content, author_id) VALUES (:title, :slug, :created_at, :content, :author_id) ");
+		$status = $query->execute([
+			'title' => $post->getTitle(),
+			'slug' => $post->getSlug(),
+			'created_at' => (new DateTime())->format('Y-m-d H:i:s'),
+			'content' => $post->getContent(),
+			'author_id' => 1
+		]);
+		if($status === false) {
+			throw new Exception("L'enregistrement n'a pas été effectué !");
+		}
+		$post->setID($this->pdo->lastInsertId());
+
+		// Insertion des catégories
+		foreach($post->getCategories() as $category) {
+			$query = $this->pdo->prepare("INSERT INTO post_category VALUES (:post_id, :category_id)");
+			$query->execute([
+				'post_id' => $post->getID(),
+				'category_id' => $category
+			]);
+		}
+
+		// Insertion des médias : 
+		foreach($post->getMedias() as $media) {
+			$query = $this->pdo->prepare("INSERT INTO post_media VALUES (:post_id, :url)");
+			$query->execute([
+				'post_id' => $post->getID(),
+				'url' => $media
+			]);
+		}
 	}
 	
 }

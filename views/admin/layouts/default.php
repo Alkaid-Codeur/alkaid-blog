@@ -60,7 +60,7 @@
 	<header class="background-header">
 	<nav class="navbar navbar-expand-lg">
 		<div class="container">
-		<a class="navbar-brand" href="<?= $router->url('home') ?>"><h2>Alkaid-Blog<em>.</em><span style="font-size: 12px; font-style: italic, padding-left: 5px; text-transform: capitalize">(Admin)</span></h2></a>
+		<a class="navbar-brand" href="<?= $router->url('admin_posts') ?>"><h2>Alkaid-Blog<em>.</em><span style="font-size: 12px; font-style: italic, padding-left: 5px; text-transform: capitalize">(Admin)</span></h2></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -110,10 +110,10 @@
 	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Additional Scripts -->
+	<script src="/assets/vendor/select/js/select2.min.js"></script>
 	<script src="/assets/js/custom.js"></script>
 	<script src="/assets/js/owl.js"></script>
 	<script src="/assets/js/slick.js"></script>
-	<script src="/assets/vendor/select/js/select2.min.js"></script>
 	<script src="/assets/js/isotope.js"></script>
 	<script src="/assets/js/accordions.js"></script>
 

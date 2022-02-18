@@ -18,6 +18,7 @@ $showCategory = $categoryTable->find($id);
 
 [$posts, $paginatedQuery] = (new PostTable($pdo))->getPostsWithPaginationFromCategory($showCategory->getID());
 (new CategoryTable($pdo))->hydratePosts($posts);
+(new PostTable($pdo))->getPostMedias($posts);
 
 $categorySlug = $showCategory->getSlug();
 $url = $router->url('category', ['id' => $showCategory->getID(), 'slug' => $showCategory->getSlug()]);

@@ -43,7 +43,7 @@ class Post {
 		return new DateTime($this->created_at); 
 	}
 
-	public function getContent(): string
+	public function getContent(): ?string
 	{
 		return $this->content;
 	}
@@ -147,6 +147,18 @@ class Post {
 	public function setMedias($medias)
 	{
 		$this->medias = $medias;
+
+		return $this;
+	}
+
+	/**
+	 * Set the value of id
+	 *
+	 * @return  self
+	 */ 
+	public function setID($id)
+	{
+		$this->id = $id;
 
 		return $this;
 	}
