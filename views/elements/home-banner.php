@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Text;
 use App\PDOConnection;
 use App\Table\PostTable;
 use App\Table\UserTable;
@@ -8,9 +9,7 @@ $pdo = PDOConnection::getPDO();
 
 $bannerPosts = (new PostTable($pdo))->getElements(10);
 (new CategoryTable($pdo))->hydratePosts($bannerPosts);
-foreach ($bannerPosts as $bannerPost) {
-	(new PostTable($pdo))->getPostMedias($bannerPost);
-}
+(new PostTable($pdo))->getPostMedias($bannerPosts);
 ?>
 
 <div class="main-banner header-text">
@@ -19,13 +18,13 @@ foreach ($bannerPosts as $bannerPost) {
 			<?php foreach($bannerPosts as $post): ?>
 				<?php $author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername(); ?>
 				<div class="item">
-					<img src="assets/images/banner-item-01.jpg" alt="">
+					<img src="storage/post_images/<?= $post->getMedias()[0] ?? "default.jpg" ?>" alt="">
 					<div class="item-content">
 						<div class="main-content">
 							<div class="meta-category">
 								<span><?= $post->getCategories()[0]->getName() ?></span>
 							</div>
-							<a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]) ?>"><h4><?= $post->getTitle() ?></h4></a>
+							<a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]) ?>"><h4><?= Text::excerptTitle($post->getTitle(), 40)?></h4></a>
 							<ul class="post-info">
 							<li><a href="#"><?= $author ?></a></li>
 							<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>

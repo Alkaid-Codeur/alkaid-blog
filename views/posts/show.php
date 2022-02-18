@@ -55,7 +55,7 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 								<div class="blog-thumb owl-carousel gallery-carousel">
 									<?php foreach($post->getMedias() as $media): ?>
 										<div class="item">
-											<img src="/storage/<?= $media ?>" alt="Image article">
+											<img src="/storage/post_images/<?= $media ?>" alt="Image article">
 										</div>
 									<?php endforeach ?>
 								</div>

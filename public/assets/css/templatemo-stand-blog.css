@@ -275,12 +275,19 @@ header .navbar {
 
 .owl-banner .item, .gallery-carousel .item {
 	position: relative;
+	height: 445px;
+}
+
+.owl-banner .item img {
+	height: 100%;
+	object-fit: cover;
 }
 
 .owl-banner .item .item-content {
 	position: absolute;
 	bottom: 40px;
 	left: 40px;
+	right: 40px;
 }
 
 .owl-banner .item .item-content .meta-category span {
@@ -334,12 +341,12 @@ header .navbar {
 
 .owl-banner .owl-nav .owl-prev, .gallery-carousel .owl-nav .owl-prev {
 	position: absolute;
-	left: 40px;
+	left: 20px;
 }
 
 .owl-banner .owl-nav .owl-next, .gallery-carousel .owl-nav .owl-next{
 	position: absolute;
-	right: 40px;
+	right: 20px;
 }
 
 .owl-banner .owl-nav button, .gallery-carousel .owl-nav button {
@@ -1118,4 +1125,10 @@ footer p a:hover {
 	.blog-posts .blog-thumb img {
 		height: 350px;
 	}
+
+	.owl-banner .item, .gallery-carousel .item {
+		position: relative;
+		height: 300px;
+	}
+	
 }

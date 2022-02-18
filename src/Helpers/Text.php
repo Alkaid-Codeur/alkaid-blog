@@ -17,4 +17,13 @@ class Text {
 		}
 		return mb_substr($text, 0, $lastSpace) . ' ...';
 	}
+
+	public static function excerptTitle(string $text, int $limit) {
+		if(mb_strlen($text) <= $limit)
+		{
+			return $text;
+		}
+		$lastSpace = mb_strpos($text, ' ', $limit);
+		return mb_substr($text, 0, $lastSpace) . ' ...';
+	}
 }
