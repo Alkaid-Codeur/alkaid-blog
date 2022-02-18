@@ -60,7 +60,7 @@ class Post {
 	/**
 	 * Get the value of medias
 	 */ 
-	public function getMedias(): array
+	public function getMedias(): ?array
 	{
 		return $this->medias;
 	}

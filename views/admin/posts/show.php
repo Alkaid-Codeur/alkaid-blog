@@ -13,6 +13,8 @@ $post = (new PostTable($pdo))->find($id);
 $author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername();
 $categories = (new CategoryTable($pdo))->getPostCategories($post->getID());
 
+(new PostTable($pdo))->getPostMedias([$post]);
+
 ?>
 
 <div class="heading-page header-text">
@@ -33,18 +35,27 @@ $categories = (new CategoryTable($pdo))->getPostCategories($post->getID());
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+				<?php if(isset($_GET['update'])): ?>
+					<div class="alert alert-success">
+						Cet article a bien été modifié !
+					</div>
+				<?php endif ?>
 				<div class="all-blog-posts">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="blog-post">
-								<div class="blog-thumb">
-									<img src="/assets/images/blog-post-02.jpg" alt="">
+								<div class="blog-thumb owl-carousel gallery-carousel">
+									<?php foreach($post->getMedias() as $media): ?>
+										<div class="item">
+											<img src="/storage/<?= $media ?>" alt="Image article">
+										</div>
+									<?php endforeach ?>
 								</div>
 								<div class="down-content">
 									<?php foreach($categories as $category): ?>
 										<a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>"><span><?= $category->getName() ?></span></a>, &nbsp;
 									<?php endforeach ?>
-								<a href="post-details.html"><h4>Aenean pulvinar gravida sem nec</h4></a>
+								<h4><?= $post->getTitle() ?></h4>
 								<ul class="post-info">
 									<li><a href="#"><?= $author ?></a></li>
 									<!-- <li><a href="#">Admin</a></li> -->

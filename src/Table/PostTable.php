@@ -2,6 +2,7 @@
 
 namespace App\Table;
 
+use PDO;
 use Exception;
 use App\Models\Post;
 use App\PaginatedQuery;
@@ -47,12 +48,79 @@ final class PostTable extends Table {
 		return [$posts, $paginatedQuery];
 	}
 
+	/**
+	 * @param Post[]
+	 */
+	public function getPostMedias(array $posts) {
+		foreach ($posts as $post) {
+			$query = $this->pdo->prepare("SELECT url FROM post_media WHERE post_id  = :id");
+			$query->execute([
+				'id' => $post->getID()
+			]);
+			$response = $query->fetchAll(PDO::FETCH_COLUMN);
+			if(count($response) === 0) {
+				$post->setMedias(['default.jpg']);
+			}
+			else {
+				$post->setMedias($response);
+			}
+		}
+	}
+
 	public function delete($id) {
 		$query = $this->pdo->prepare("DELETE FROM $this->table WHERE id = :id");
 		$status = $query->execute(['id' => $id]);
 		if($status === false) {
 			throw new Exception("Impossible de supprimer l'enregistrement $id");
 		};
+	}
+
+	public function editPost(Post $post, string $updateMode) {
+		$query = $this->pdo->prepare("UPDATE {$this->table} 
+								SET title = :title,
+								slug = :slug,
+								content = :content
+								WHERE id = :id
+		");
+		$status = $query->execute([
+			'title' => $post->getTitle(),
+			'slug' => $post->getSlug(),
+			'content' => $post->getContent(),
+			'id' => $post->getID()
+		]);
+		if($status === false) {
+			throw new Exception("Impossible d'éffectuer la modification");
+		}
+
+		$query = $this->pdo->query("DELETE FROM post_category WHERE post_id = {$post->getID()}");
+		foreach($post->getCategories() as $category) {
+			$query = $this->pdo->prepare('INSERT INTO post_category VALUES (:post_id, :category_id)');
+			$query->execute([
+				'post_id' => $post->getID(),
+				'category_id' => $category
+			]);
+		}
+
+		if($updateMode === "updateMode1") {
+			foreach($post->getMedias() as $media) {
+				$query = $this->pdo->prepare("INSERT INTO post_media VALUES (:post_id, :url)");
+				$query->execute([
+					'post_id' => $post->getID(),
+					'url' => $media
+				]);
+			}
+		}
+		else if ($updateMode === "updateMode2") {
+			$query = $this->pdo->query("DELETE FROM post_media WHERE post_id = {$post->getID()}");
+			foreach($post->getMedias() as $media) {
+				$query = $this->pdo->prepare("INSERT INTO post_media VALUES (:post_id, :url)");
+				$query->execute([
+					'post_id' => $post->getID(),
+					'url' => $media
+				]);
+			}
+		}
+
 	}
 	
 }

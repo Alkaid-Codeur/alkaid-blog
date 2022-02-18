@@ -19,6 +19,8 @@ $categories = (new CategoryTable($pdo))->getPostCategories($post->getID());
 $url = $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]);
 URL::handleSlugInURL($slug, $post->getSlug(), $url);
 
+(new PostTable($pdo))->getPostMedias([$post]);
+
 ?>
 
 
@@ -50,14 +52,18 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="blog-post">
-								<div class="blog-thumb">
-									<img src="/assets/images/blog-post-02.jpg" alt="">
+								<div class="blog-thumb owl-carousel gallery-carousel">
+									<?php foreach($post->getMedias() as $media): ?>
+										<div class="item">
+											<img src="/storage/<?= $media ?>" alt="Image article">
+										</div>
+									<?php endforeach ?>
 								</div>
 								<div class="down-content">
 									<?php foreach($categories as $category): ?>
 										<a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>"><span><?= $category->getName() ?></span></a>, &nbsp;
 									<?php endforeach ?>
-								<a href="post-details.html"><h4>Aenean pulvinar gravida sem nec</h4></a>
+								<h4><?= $post->getTitle() ?></h4>
 								<ul class="post-info">
 									<li><a href="#"><?= $author ?></a></li>
 									<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
@@ -66,14 +72,14 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 								<p><?= nl2br(e($post->getContent()))?></p>
 								<div class="post-options">
 									<div class="row">
-									<div class="col-6">
+									<div class="col-sm-12 col-lg-6">
 										<ul class="post-tags">
 										<li><i class="fa fa-tags"></i></li>
 										<li><a href="#">Best Templates</a>,</li>
 										<li><a href="#">TemplateMo</a></li>
 										</ul>
 									</div>
-									<div class="col-6">
+									<div class="col-sm-12 col-lg-6">
 										<ul class="post-share">
 										<li><i class="fa fa-share-alt"></i></li>
 										<li><a href="#">Facebook</a>,</li>
@@ -86,7 +92,7 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 							</div>
 						</div>
 						<div class="col-lg-12">
-							<div class="sidebar-item comments">
+							<!-- <div class="sidebar-item comments">
 								<div class="sidebar-heading">
 								<h2>4 comments</h2>
 								</div>
@@ -130,7 +136,7 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 									</li>
 								</ul>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<div class="col-lg-12">
 							<div class="sidebar-item submit-comment">
@@ -177,4 +183,6 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 		</div>
 	</div>
 </section>
+
+
 

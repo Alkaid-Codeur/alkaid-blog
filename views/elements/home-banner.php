@@ -8,6 +8,9 @@ $pdo = PDOConnection::getPDO();
 
 $bannerPosts = (new PostTable($pdo))->getElements(10);
 (new CategoryTable($pdo))->hydratePosts($bannerPosts);
+foreach ($bannerPosts as $bannerPost) {
+	(new PostTable($pdo))->getPostMedias($bannerPost);
+}
 ?>
 
 <div class="main-banner header-text">
