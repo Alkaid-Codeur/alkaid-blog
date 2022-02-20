@@ -16,15 +16,18 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 	<div class="container-fluid">
 		<div class="owl-banner owl-carousel">
 			<?php foreach($bannerPosts as $post): ?>
-				<?php $author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername(); ?>
+				<?php 
+					$category = $post->getCategories()[0];
+					$author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername();
+				?>
 				<div class="item">
 					<img src="storage/post_images/<?= $post->getMedias()[0] ?>" alt="">
 					<div class="item-content">
 						<div class="main-content">
 							<div class="meta-category">
-								<span><?= $post->getCategories()[0]->getName() ?></span>
+								<span><a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>"><?= $category->getName() ?></a></span>
 							</div>
-							<a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]) ?>"><h4><?= Text::excerptTitle($post->getTitle(), 40)?></h4></a>
+							<a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()]) ?>"><h4 class="post-title"><?= Text::excerptTitle($post->getTitle(), 40)?></h4></a>
 							<ul class="post-info">
 							<li><a href="#"><?= $author ?></a></li>
 							<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>

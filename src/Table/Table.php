@@ -76,4 +76,11 @@ abstract class Table {
 		return $result;
 	}
 
+	public function count(): int
+	{
+		$query = $this->pdo->query("SELECT count(id) FROM {$this->table}");
+		$query->setFetchMode(PDO::FETCH_COLUMN, 0);
+		return $query->fetch();
+	}
+
 }

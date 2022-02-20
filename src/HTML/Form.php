@@ -20,7 +20,7 @@ class Form {
 	public function textInput(string $field, string $label): string
 	{
 		return <<<HTML
-			<div class="form-group mb-3">
+			<div class="form-group mb-4">
 				<label for="{$field}">$label</label>
 				<input type="text" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" value="{$this->fillField($field)}" required>
 				{$this->getFeedback($field)}
@@ -31,9 +31,9 @@ class Form {
 	public function textarea(string $field, string $label): string
 	{
 		return <<<HTML
-			<div class="form-group mb-3">
+			<div class="form-group mb-4">
 				<label for="{$field}">$label</label>
-				<textarea type="text" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" required> {$this->fillField($field)} </textarea>
+				<textarea type="text" rows="15" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" required> {$this->fillField($field)} </textarea>
 				{$this->getFeedback($field)}
 			</div>
 		HTML;

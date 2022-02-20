@@ -15,15 +15,18 @@ $overviewPosts = (new PostTable($pdo))->getElements(3);
 <div class="all-blog-posts">
 				<div class="row">
 					<?php foreach($overviewPosts as $overviewPost): ?>
-						<?php $author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername(); ?>
+						<?php
+							$category = $overviewPost->getCategories()[0]; 
+							$author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername(); 
+						?>
 						<div class="col-lg-12">
 							<div class="blog-post">
 								<div class="blog-thumb">
 									<img src="storage/post_images/<?= $overviewPost->getMedias()[0] ?>" alt="Image article" class="img-overview">
 								</div>
 								<div class="down-content">
-								<span><?= $overviewPost->getCategories()[0]->getName()  ?></span>
-								<a href="<?= $router->url('post', ['id' => $overviewPost->getID(), 'slug' => $overviewPost->getSlug()]) ?>"><h4><?= $overviewPost->getTitle() ?></h4></a>
+								<span><a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>" style="color: inherit"><?= $category->getName()  ?></a></span>
+								<a href="<?= $router->url('post', ['id' => $overviewPost->getID(), 'slug' => $overviewPost->getSlug()]) ?>"><h4 class="post-title"><?= $overviewPost->getTitle() ?></h4></a>
 								<ul class="post-info">
 									<li><a href="#"><?= $author ?></a></li>
 									<li><a href="#"><?= $overviewPost->getCreatedAt()->format('d F Y') ?></a></li>

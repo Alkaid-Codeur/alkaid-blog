@@ -94,7 +94,7 @@ class Post {
 	 *
 	 * @return  self
 	 */ 
-	public function setCreated_at($created_at)
+	public function setCreatedAt($created_at)
 	{
 		$this->created_at = $created_at;
 
@@ -106,7 +106,7 @@ class Post {
 	 *
 	 * @return  self
 	 */ 
-	public function setAuthor_id($author_id)
+	public function setAuthorID($author_id)
 	{
 		$this->author_id = $author_id;
 

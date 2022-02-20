@@ -33,7 +33,7 @@ $router->get('/', 'main.home', 'home')
 	   ->get('/nous-contacter', 'main.contact', 'contact')
 	   ->get('/a-propos', 'main.about', 'about')
 	   ->match('/articles', 'posts.index', 'posts')
-	   ->get('/article/[*:slug]-[i:id]', 'posts.show', 'post')
+	   ->match('/article/[*:slug]-[i:id]', 'posts.show', 'post')
 	   ->get('/category/[*:slug]-[i:id]', 'categories.category', 'category')
 
 	   // ROUTES ADMINISTRATION

@@ -148,6 +148,8 @@ final class PostTable extends Table {
 
 	}
 
+	// Insertion d'un article
+
 	public function insertPost($post) 
 	{
 		$query = $this->pdo->prepare("INSERT INTO post (title, slug, created_at, content, author_id) VALUES (:title, :slug, :created_at, :content, :author_id) ");
