@@ -15,7 +15,9 @@ use App\Helpers\Text;
 										<ul class="post-info">
 											<li><a href="#"><?= $author ?></a></li>
 											<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
-											<!-- <li><a href="#">12 Comments</a></li> -->
+											<?php if($countComments > 0): ?>
+												<li><a href="#"><?= $countComments ?> <?= ($countComments > 1) ? "Commentaires" : "Commentaire" ?></a></li>
+											<?php endif ?>
 										</ul>
 										<p><?= Text::excerpt(nl2br(e($post->getContent())), 170) ?></p>
 										<!-- <div class="post-options">

@@ -12,8 +12,11 @@ use App\Helpers\Text;
 										<a href="<?= $router->url('category', ['id'=> $showCategory->getID(), 'slug' => $showCategory->getSlug()]) ?>"><span><?= $showCategory->getName() ?></span></a>
 										<a href="<?= $router->url('post', ['id'=> $post->getID(), 'slug'=>$post->getSlug()]) ?>"><h4 class="post-title"><?= $post->getTitle() ?></h4></a>
 										<ul class="post-info">
-											<!-- <li><a href="#">Admin</a></li> -->
+											<li><a href="#"><?= $author ?></a></li>
 											<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
+											<?php if($countComments > 0): ?>
+												<li><a href="#"><?= $countComments ?> <?= ($countComments > 1) ? "Commentaires" : "Commentaire" ?></a></li>
+											<?php endif ?>
 											<!-- <li><a href="#">12 Comments</a></li> -->
 										</ul>
 										<p><?= Text::excerpt(nl2br(e($post->getContent())), 170) ?></p>

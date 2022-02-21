@@ -52,9 +52,16 @@ class Router {
 			$view = $this->viewPath . DIRECTORY_SEPARATOR . 'main/e404.php';
 		}
 		$layout = (isset($isAdmin) && $isAdmin) ? "admin/layouts/default.php" : "layouts/default.php";
-		ob_start();
-		require $view;
-		$pageContent = ob_get_clean();
-		require $this->viewPath . DIRECTORY_SEPARATOR . $layout; 
+		try {
+			ob_start();
+			require $view;
+			$pageContent = ob_get_clean();
+			require $this->viewPath . DIRECTORY_SEPARATOR . $layout; 	
+		}
+		catch(AuthException $e) {
+			header('Location:' . $this->url('admin_login') . '?forbidden=1', true, 301);
+			exit();
+		}
+		return $this;
 	}
 }

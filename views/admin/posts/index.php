@@ -1,5 +1,4 @@
 <?php
-
 use App\PDOConnection;
 use App\Table\PostTable;
 
@@ -13,10 +12,10 @@ $link = $router->url('admin_posts');
 		<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-			<div class="text-content">
-				<h4>Articles</h4>
-				<h2>Liste des articles</h2>
-			</div>
+				<div class="text-content">
+					<h4>Articles</h4>
+					<h2>Liste des articles</h2>
+				</div>
 			</div>
 		</div>
 		</div>

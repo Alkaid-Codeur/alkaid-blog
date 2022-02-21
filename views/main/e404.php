@@ -1,3 +1,7 @@
+<?php
+http_response_code(404);
+?>
+
 <h1>404</h1>
 <h2>Cette page n'existe pas.</h2>
 

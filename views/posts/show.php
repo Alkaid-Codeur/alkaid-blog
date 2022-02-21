@@ -63,31 +63,31 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 									<?php foreach($categories as $category): ?>
 										<a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>"><span><?= $category->getName() ?></span></a>, &nbsp;
 									<?php endforeach ?>
-								<h4><?= $post->getTitle() ?></h4>
-								<ul class="post-info">
-									<li><a href="#"><?= $author ?></a></li>
-									<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
-									<!-- <li><a href="#">10 Comments</a></li> -->
-								</ul>
-								<p><?= nl2br(e($post->getContent()))?></p>
-								<div class="post-options">
-									<div class="row">
-									<div class="col-sm-12 col-lg-6">
-										<ul class="post-tags">
-										<li><i class="fa fa-tags"></i></li>
-										<li><a href="#">Best Templates</a>,</li>
-										<li><a href="#">TemplateMo</a></li>
-										</ul>
+									<h4><?= $post->getTitle() ?></h4>
+									<ul class="post-info">
+										<li><a href="#"><?= $author ?></a></li>
+										<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
+										<!-- <li><a href="#">10 Comments</a></li> -->
+									</ul>
+									<p><?= nl2br(e($post->getContent()))?></p>
+									<div class="post-options">
+										<div class="row">
+											<!-- <div class="col-sm-12 col-lg-6">
+												<ul class="post-tags">
+												<li><i class="fa fa-tags"></i></li>
+												<li><a href="#">Best Templates</a>,</li>
+												<li><a href="#">TemplateMo</a></li>
+												</ul>
+											</div> -->
+											<div class="col">
+												<ul class="post-share">
+												<li><i class="fa fa-share-alt"></i></li>
+												<li><a href="#">Facebook</a>,</li>
+												<li><a href="#"> Twitter</a></li>
+												</ul>
+											</div>
+										</div>
 									</div>
-									<div class="col-sm-12 col-lg-6">
-										<ul class="post-share">
-										<li><i class="fa fa-share-alt"></i></li>
-										<li><a href="#">Facebook</a>,</li>
-										<li><a href="#"> Twitter</a></li>
-										</ul>
-									</div>
-									</div>
-								</div>
 								</div>
 							</div>
 						</div>

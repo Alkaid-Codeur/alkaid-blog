@@ -4,10 +4,10 @@ namespace App\Models;
 
 class Users {
 
-	private int $id;
-	private string $mail;
-	private string $username;
-	private string $password;
+	private $id;
+	private $mail;
+	private $username;
+	private $password;
 
 	/**
 	 * Get the value of password
@@ -36,8 +36,32 @@ class Users {
 	/**
 	 * Get the value of id
 	 */ 
-	public function getId()
+	public function getID()
 	{
 		return $this->id;
+	}
+
+	/**
+	 * Set the value of mail
+	 *
+	 * @return  self
+	 */ 
+	public function setMail($mail)
+	{
+		$this->mail = $mail;
+
+		return $this;
+	}
+
+	/**
+	 * Set the value of password
+	 *
+	 * @return  self
+	 */ 
+	public function setPassword($password)
+	{
+		$this->password = $password;
+
+		return $this;
 	}
 }

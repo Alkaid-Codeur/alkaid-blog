@@ -17,17 +17,17 @@ class Form {
 		$this->errors = $errors;
 	}
 
-	public function textInput(string $field, string $label): string
+	public function textInput(string $field, string $label, string $type = "text"): string
 	{
 		return <<<HTML
 			<div class="form-group mb-4">
 				<label for="{$field}">$label</label>
-				<input type="text" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" value="{$this->fillField($field)}" required>
+				<input type="{$type}" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" value="{$this->fillField($field)}" required>
 				{$this->getFeedback($field)}
 			</div>
 		HTML;
 	}
-
+	
 	public function textarea(string $field, string $label): string
 	{
 		return <<<HTML

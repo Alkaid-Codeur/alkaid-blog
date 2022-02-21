@@ -1,3 +1,9 @@
+<?php
+
+use App\Auth;
+
+$auth_status = Auth::checkAuthentification();
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -60,22 +66,25 @@
 	<header class="background-header">
 	<nav class="navbar navbar-expand-lg">
 		<div class="container">
-		<a class="navbar-brand" href="<?= $router->url('admin_posts') ?>"><h2>Alkaid-Blog<em>.</em><span style="font-size: 12px; font-style: italic, padding-left: 5px; text-transform: capitalize">(Admin)</span></h2></a>
+		<div class="dropdown">
+			<a class="navbar-brand" href="<?= $router->url('admin_posts') ?>"><h2>Alkaid-Blog<em>.</em><span style="font-size: 12px; font-style: italic, padding-left: 5px; text-transform: capitalize">(Admin)</span></h2></a>
+		</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item <?= ((str_contains($_SERVER['REQUEST_URI'], 'post')) || $_SERVER['REQUEST_URI'] === "/admin") ? "active": "" ?>">
+				<li class="nav-item <?= ((str_contains($_SERVER['REQUEST_URI'], 'post')) || $_SERVER['REQUEST_URI'] === "/admin" || str_contains($_SERVER['REQUEST_URI'], '/admin?')) ? "active": "" ?>">
 					<a class="nav-link" href="<?= $router->url('admin_posts') ?> ">Articles</a>
 				</li>			
 				<li class="nav-item <?= (str_contains($_SERVER['REQUEST_URI'], 'categor'))? "active": "" ?>">
 					<a class="nav-link" href="<?= $router->url('admin_categories') ?> ">Categories</a>
 				</li>		
 				<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/')? "active": "" ?>">
-					<a class="nav-link" href="<?= $router->url('home') ?>">Acceuil
-					<span class="sr-only">(current)</span>
-					</a>
+					<form action="<?= $router->url('admin_logout') ?>" method="post" style="display: inline">
+						<button type="submit" class="nav-link" style="display: inline-block; border: none; background: transparent; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Deconnexion</button>
+					</form>
+					<!-- <span class="sr-only">(current)</span> -->
 				</li> 
 			</ul>
 		</div>

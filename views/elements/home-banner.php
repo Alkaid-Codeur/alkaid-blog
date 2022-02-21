@@ -4,6 +4,7 @@ use App\Helpers\Text;
 use App\PDOConnection;
 use App\Table\PostTable;
 use App\Table\UserTable;
+use App\Table\CommentTable;
 use App\Table\CategoryTable;
 $pdo = PDOConnection::getPDO();
 
@@ -19,6 +20,7 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 				<?php 
 					$category = $post->getCategories()[0];
 					$author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername();
+					$countComments = (new CommentTable($pdo))->countForPost($post->getID());
 				?>
 				<div class="item">
 					<img src="storage/post_images/<?= $post->getMedias()[0] ?>" alt="">
@@ -31,7 +33,9 @@ $bannerPosts = (new PostTable($pdo))->getElements(10);
 							<ul class="post-info">
 							<li><a href="#"><?= $author ?></a></li>
 							<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
-							<!-- <li><a href="#">12 Comments</a></li> -->
+							<?php if($countComments > 0): ?>
+								<li><a href="#"><?= $countComments ?> <?= ($countComments > 1) ? "Commentaires" : "Commentaire" ?></a></li>
+							<?php endif ?>
 							</ul>
 						</div>
 					</div>

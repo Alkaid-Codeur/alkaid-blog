@@ -9,7 +9,7 @@ $title = "Contact";
 		<div class="row">
 			<div class="col-lg-12">
 			<div class="text-content">
-				<h4>contact us</h4>
+				<h4>Nous contacter</h4>
 				<h2>let's stay in touch!</h2>
 			</div>
 			</div>
@@ -30,7 +30,7 @@ $title = "Contact";
 				<div class="col-lg-8">
 				<div class="sidebar-item contact-form">
 					<div class="sidebar-heading">
-					<h2>Send us a message</h2>
+						<h2>Nous envoyer un message</h2>
 					</div>
 					<div class="content">
 					<form id="contact" action="" method="post">
@@ -68,17 +68,17 @@ $title = "Contact";
 				<div class="col-lg-4">
 				<div class="sidebar-item contact-information">
 					<div class="sidebar-heading">
-					<h2>contact information</h2>
+					<h2>Contacts information</h2>
 					</div>
 					<div class="content">
 					<ul>
 						<li>
-						<h5>090-484-8080</h5>
-						<span>PHONE NUMBER</span>
+						<h5><a href="tel:+22969538063"> (00229)695 380 63</a></h5>
+						<span>Numero de téléphone</span>
 						</li>
 						<li>
-						<h5>info@company.com</h5>
-						<span>EMAIL ADDRESS</span>
+						<h5><a href="mailto:noblebusiness9@gmail.com">codhub@gmail.com</h5>
+						<span>Adresse mail</span>
 						</li>
 						<li>
 						<h5>123 Aenean id posuere dui, 

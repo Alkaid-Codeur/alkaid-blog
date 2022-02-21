@@ -1,4 +1,6 @@
 <?php
+
+use App\Auth;
 use App\Router;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
@@ -28,6 +30,7 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
+
 // Routes any-user : 
 $router->get('/', 'main.home', 'home')
 	   ->get('/nous-contacter', 'main.contact', 'contact')
@@ -37,6 +40,10 @@ $router->get('/', 'main.home', 'home')
 	   ->get('/category/[*:slug]-[i:id]', 'categories.category', 'category')
 
 	   // ROUTES ADMINISTRATION
+
+	   // Authentification
+	   ->match('/login', 'auth.login', 'admin_login')
+	   ->post('/logout', 'auth.logout', 'admin_logout')
 
 	   // Gestion des articles CRUD
 	   ->get('/admin', 'admin.posts.index', 'admin_posts')

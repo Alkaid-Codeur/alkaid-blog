@@ -1,13 +1,15 @@
 <?php
 
-use App\Helpers\Text;
 use App\Helpers\URL;
-use App\Models\Category;
 use App\Models\Post;
-use App\PaginatedQuery;
+use App\Helpers\Text;
 use App\PDOConnection;
-use App\Table\CategoryTable;
+use App\PaginatedQuery;
+use App\Models\Category;
 use App\Table\PostTable;
+use App\Table\UserTable;
+use App\Table\CommentTable;
+use App\Table\CategoryTable;
 
 $pdo = PDOConnection::getPDO();
 $id = $params['id'];
@@ -54,6 +56,10 @@ $link = $url;
 				<div class="all-blog-posts">
 					<div class="row" style="align-items: stretch">
 						<?php foreach($posts as $post): ?>
+							<?php 
+								$author = (new UserTable($pdo))->find($post->getAuthorID())->getUsername();
+								$countComments = (new CommentTable($pdo))->countForPost($post->getID());
+							?>
 							<?php require 'card.php' ?>
 						<?php endforeach ?>
 						<div class="col-lg-12">
