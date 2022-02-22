@@ -120,7 +120,10 @@ $auth_status = Auth::checkAuthentification();
 
 	<!-- Additional Scripts -->
 	<script src="/assets/vendor/select/js/select2.min.js"></script>
+	<!-- <script src='https://cdn.tiny.cloud/1/5yp2vl48agzjtdsdbgrxcpr4gnedytdenrhynm9z56zsh3ee/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
+	<script src="/assets/vendor/tiny/tiny.js"></script>
 	<script src="/assets/js/custom.js"></script>
+	<script src="/assets/js/admin_custom.js"></script>
 	<script src="/assets/js/owl.js"></script>
 	<script src="/assets/js/slick.js"></script>
 	<script src="/assets/js/isotope.js"></script>
@@ -138,3 +141,7 @@ $auth_status = Auth::checkAuthentification();
 	</script>
 </body>
 </html>
+
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur sed earum ipsam tenetur soluta quos, obcaecati ut voluptatibus ratione sint. Laboriosam, laborum facere? Cupiditate ullam esse odio iusto iste cum.
+
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur sed earum ipsam tenetur soluta quos, obcaecati ut voluptatibus ratione sint. Laboriosam, laborum facere? Cupiditate ullam esse odio iusto iste cum.

@@ -1,5 +1,4 @@
 <?php
-
 use App\Auth;
 use App\Router;
 

@@ -37,7 +37,9 @@ $overviewPosts = (new PostTable($pdo))->getElements(3);
 										<?php endif ?>
 										<!-- <li><a href="#">12 Comments</a></li> -->
 									</ul>
-									<p><?= e(Text::excerpt($overviewPost->getContent(), 300)) ?></p>
+									<div class="post-text-content">
+										<?= Text::excerpt($overviewPost->getContent(), 300) ?>
+									</div>
 									<div class="post-options">
 										<div class="row">
 											<!-- <div class="col-sm-6">

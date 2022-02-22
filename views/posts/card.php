@@ -19,18 +19,9 @@ use App\Helpers\Text;
 												<li><a href="#"><?= $countComments ?> <?= ($countComments > 1) ? "Commentaires" : "Commentaire" ?></a></li>
 											<?php endif ?>
 										</ul>
-										<p><?= Text::excerpt(nl2br(e($post->getContent())), 170) ?></p>
-										<!-- <div class="post-options">
-											<div class="row">
-												<div class="col-lg-12">
-													<ul class="post-tags">
-													<li><i class="fa fa-tags"></i></li>
-													<li><a href="#">Best Templates</a>,</li>
-													<li><a href="#">TemplateMo</a></li>
-													</ul>
-												</div>
-											</div>
-										</div> -->
+										<div class="post-text-content">
+											<?= nl2br(Text::excerpt($post->getContent(), 170)) ?>
+										</div>
 									</div>
 								</div>
 							</div>

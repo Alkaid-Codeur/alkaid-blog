@@ -64,7 +64,9 @@ $commentTable = new CommentTable($pdo);
 										<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
 										<!-- <li><a href="#">10 Comments</a></li> -->
 									</ul>
-									<p><?= nl2br(e($post->getContent()))?></p>
+									<div class="post-text-content">
+										<?= nl2br($post->getContent()) ?>	
+									</div>
 									<div class="post-options">
 										<div class="row">
 											<div class="col-6">

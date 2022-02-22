@@ -69,16 +69,11 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 										<li><a href="#"><?= $post->getCreatedAt()->format('d F Y') ?></a></li>
 										<!-- <li><a href="#">10 Comments</a></li> -->
 									</ul>
-									<p><?= nl2br(e($post->getContent()))?></p>
+									<div class="post-text-content show-content">
+										<?= nl2br($post->getContent())?>
+									</div>
 									<div class="post-options">
 										<div class="row">
-											<!-- <div class="col-sm-12 col-lg-6">
-												<ul class="post-tags">
-												<li><i class="fa fa-tags"></i></li>
-												<li><a href="#">Best Templates</a>,</li>
-												<li><a href="#">TemplateMo</a></li>
-												</ul>
-											</div> -->
 											<div class="col">
 												<ul class="post-share">
 												<li><i class="fa fa-share-alt"></i></li>
@@ -107,11 +102,11 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 										<?php foreach($commentTable->getPostComments($post->getID()) as $comment): ?>
 											<li>
 												<div class="author-thumb">
-													<img src="assets/images/comment-author-01.jpg" alt="">
+													<!-- <img src="assets/images/comment-author-01.jpg" alt=""> -->
 												</div>
 												<div class="right-content">
-													<h4><?= $comment->getAuthorName() ?><span><?= $comment->getCreatedAt()->format('F d, Y')?></span></h4>
-													<p><?= $comment->getContent() ?></p>
+													<h4><?= e($comment->getAuthorName()) ?><span><?= $comment->getCreatedAt()->format('F d, Y')?></span></h4>
+													<p><?= e($comment->getContent()) ?></p>
 												</div>
 											</li>
 										<?php endforeach ?>

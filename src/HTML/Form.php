@@ -33,7 +33,7 @@ class Form {
 		return <<<HTML
 			<div class="form-group mb-4">
 				<label for="{$field}">$label</label>
-				<textarea type="text" rows="15" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" required> {$this->fillField($field)} </textarea>
+				<textarea id="mytextarea" type="text" rows="15" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" required> {$this->fillField($field)} </textarea>
 				{$this->getFeedback($field)}
 			</div>
 		HTML;

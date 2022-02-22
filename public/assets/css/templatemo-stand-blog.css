@@ -506,12 +506,26 @@ header .navbar {
 	color: #f48840;
 }
 
-.blog-posts .down-content p {
+.blog-posts .down-content .post-text-content {
 	padding: 25px 0px;
 	margin: 25px 0px;
 	border-top: 1px solid #eee;
+	color: #7a7a7a;
 	/* border-bottom: 1px solid #eee; */
 }
+
+.blog-posts .down-content .show-content{
+	line-height: 1;
+}
+
+.blog-posts .down-content .post-text-content blockquote {
+	font-size: 1.25rem;
+	font-style: italic;
+	padding-left: 20px;
+	border-left: 2px solid #ff4157;
+}
+
+
 
 .blog-posts .down-content ul.post-share {
 	text-align: right;
