@@ -3,7 +3,6 @@ jQuery(document).ready(function ($) {
 
 	"use strict";
 
-
 	// Page loading animation
 
 	$("#preloader").animate({
@@ -115,7 +114,21 @@ jQuery(document).ready(function ($) {
 		owl.trigger('stop.owl.autoplay')
 	})
 
+	let tgPassword = document.getElementById('password-view');
+	if(tgPassword) {
+		tgPassword.addEventListener('click', function(e) {
+			let target = e.target.previousElementSibling;
+			if(target.getAttribute('type') === 'password') {
+				target.setAttribute('type', 'text');
+			}
+			else {
+				target.setAttribute('type', 'password');
+			}
+		})
+	
+	}
 });
+
 
 
 

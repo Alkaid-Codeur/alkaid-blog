@@ -6,18 +6,18 @@ $active = true;
 <!-- Page Content -->
 <!-- Banner Starts Here -->
 <div class="heading-page header-text">
-<section class="page-heading">
-	<div class="container">
-	<div class="row">
-		<div class="col-lg-12">
-		<div class="text-content">
-			<h4>about us</h4>
-			<h2>more about us!</h2>
+	<section class="page-heading">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="text-content">
+						<h4>À propos</h4>
+						<h2>Découvrez Alkaid!</h2>
+					</div>
+				</div>
+			</div>
 		</div>
-		</div>
-	</div>
-	</div>
-</section>
+	</section>
 </div>
 
 <!-- Banner Ends Here -->
@@ -80,16 +80,16 @@ $active = true;
 	</div>
 	
 	<div class="row">
-	<div class="col-lg-12">
-		<ul class="social-icons">
-		<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-		<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-		<li><a href="#"><i class="fa fa-behance"></i></a></li>
-		<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-		</ul>
+		<div class="col-lg-12">
+			<ul class="social-icons">
+				<li><a href="https://github.com/Alkaid-Codeur"><i class="fa fa-github"></i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="https://twitter.com/NobelAlkaid"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+			</ul>
+		</div>
 	</div>
-	</div>
-	
 	
 </div>
 </section>

@@ -17,6 +17,7 @@ if($posts !== null) {
 }
 
 $link = $router->url('posts');
+$title = 'Nos articles'
 ?>
 <!-- Page Content -->
 <!-- Banner Starts Here -->
@@ -26,8 +27,8 @@ $link = $router->url('posts');
 		<div class="row">
 			<div class="col-lg-12">
 			<div class="text-content">
-				<h4>Recent Posts</h4>
-				<h2>Our Recent Blog Entries</h2>
+				<h4>Articles récents</h4>
+				<h2>Nos récentes publications</h2>
 			</div>
 			</div>
 		</div>

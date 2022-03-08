@@ -27,6 +27,7 @@ $url = $router->url('category', ['id' => $showCategory->getID(), 'slug' => $show
 URL::handleSlugInURL($slug, $categorySlug, $url);
 
 $link = $url;
+$title = 'Categorie';
 ?>
 <!-- Page Content -->
 <!-- Banner Starts Here -->
@@ -36,8 +37,8 @@ $link = $url;
 		<div class="row">
 			<div class="col-lg-12">
 			<div class="text-content">
-				<h4>Recent Posts</h4>
-				<h2>Our Recent Blog Entries</h2>
+				<h4>Catégorie</h4>
+				<h2><?= $showCategory->getName() ?></h2>
 			</div>
 			</div>
 		</div>

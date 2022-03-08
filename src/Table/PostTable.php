@@ -50,6 +50,17 @@ final class PostTable extends Table {
 		return [$posts, $paginatedQuery];
 	}
 
+	public function countPostsForCategory($id): ?int
+	{
+		$sql = "SELECT count(p.id)\n"
+		. "FROM post p, post_category pc, category c \n"
+		. "WHERE p.id = pc.post_id AND pc.category_id = c.id AND c.id = $id\n"
+		. "GROUP BY c.id";
+		$query = $this->pdo->query($sql);
+		$query->setFetchMode(PDO::FETCH_COLUMN, 0);
+		return $query->fetch();
+	}
+
 	/**
 	 * @param Post[]
 	 */

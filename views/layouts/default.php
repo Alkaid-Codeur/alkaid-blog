@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,18 +8,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?= $title ?? "Alkaid-Blog" ?></title>
 	<meta name="description" content="">
-	<meta name="author" content="TemplateMo">
-	<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet"> -->
-
+	<meta name="author" content="Alkaid-Codeur">
+	<link rel="shortcut icon" href="/assets/images/w-icon.png" type="image/x-icon">
 	<!-- Bootstrap core CSS -->
 	<link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 
 	<!-- Additional CSS Files -->
 	<link rel="stylesheet" href="/assets/css/fontawesome.css">
 	<link rel="stylesheet" href="/assets/css/templatemo-stand-blog.css">
 	<link rel="stylesheet" href="/assets/css/owl.css">
 </head>
+
 <body>
 	<!-- ***** Preloader Start ***** -->
 	<div id="preloader">
@@ -32,32 +32,32 @@
 
 	<!-- Header -->
 	<header class="background-header">
-	<nav class="navbar navbar-expand-lg">
-		<div class="container">
-		<a class="navbar-brand" href="<?= $router->url('home') ?>"><h2>Alkaid-Blog<em>.</em></h2></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
-			<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/')? "active": "" ?>">
-				<a class="nav-link" href="<?= $router->url('home') ?>">Acceuil
-				<span class="sr-only">(current)</span>
-				</a>
-			</li> 
-			<li class="nav-item <?= (str_contains($_SERVER['REQUEST_URI'], 'article'))? "active": "" ?>">
-				<a class="nav-link" href="<?= $router->url('posts') ?> ">Articles</a>
-			</li>
-			<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/a-propos')? "active": "" ?>">
-				<a class="nav-link" href="<?= $router->url('about') ?>">A propos</a>
-			</li>
-			<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/nous-contacter')? "active": "" ?>">
-				<a class="nav-link" href="<?= $router->url('contact') ?>">Contact</a>
-			</li>
-			</ul>
-		</div>
-		</div>
-	</nav>
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+			<a class="navbar-brand" href="<?= $router->url('home') ?>"><h2>Alkaid-Blog<em>.</em></h2></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+				<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/')? "active": "" ?>">
+					<a class="nav-link" href="<?= $router->url('home') ?>">Acceuil
+					<span class="sr-only">(current)</span>
+					</a>
+				</li> 
+				<li class="nav-item <?= (str_contains($_SERVER['REQUEST_URI'], 'article' ) || str_contains($_SERVER['REQUEST_URI'], 'category' ))? "active": "" ?>">
+					<a class="nav-link" href="<?= $router->url('posts') ?> ">Articles</a>
+				</li>
+				<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/a-propos')? "active": "" ?>">
+					<a class="nav-link" href="<?= $router->url('about') ?>">A propos</a>
+				</li>
+				<li class="nav-item <?= ($_SERVER['REQUEST_URI'] === '/nous-contacter')? "active": "" ?>">
+					<a class="nav-link" href="<?= $router->url('contact') ?>">Contact</a>
+				</li>
+				</ul>
+			</div>
+			</div>
+		</nav>
 	</header>
 
 	<!-- Page Content -->
@@ -68,23 +68,18 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="social-icons">
-					<li><a href="#">Facebook</a></li>
-					<li><a href="#">Twitter</a></li>
-					<li><a href="#">Behance</a></li>
-					<li><a href="#">Linkedin</a></li>
-					<li><a href="#">Dribbble</a></li>
+						<li><a href="https://github.com/Alkaid-Codeur">GitHub</a></li>
+						<li><a href="#">Linkedin</a></li>
+						<li><a href="https://twitter.com/NobelAlkaid">Twitter</a></li>
+						<li><a href="#">Facebook</a></li>
+						<li><a href="">Whatsapp</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-12">
 					<div class="copyright-text">
-						<?php if(defined('DEBUG_TIME')): ?>
-							<p style="text-transform: capitalize">
-							Page générée en <?= round(1000 * (microtime(true) - DEBUG_TIME)) ?> ms
-							</p>
-						<?php endif ?>
-					<!-- <p>Copyright 2020 Stand Blog Co.
-						| Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a>
-					</p> -->
+						<p>Copyright 2022 Alkaid Blog
+							| Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a>
+						</p>
 					</div>
 				</div>
 			</div>

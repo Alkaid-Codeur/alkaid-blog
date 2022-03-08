@@ -11,15 +11,14 @@ $auth_status = Auth::checkAuthentification();
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?= $title ?? "Alkaid-Blog" ?></title>
+	<title>Espace Admin</title>
 	<link rel="stylesheet" href="/assets/vendor/select/css/select2.min.css">
+	<link rel="shortcut icon" href="/assets/images/w-icon.png" type="image/x-icon">
 	<meta name="description" content="">
-	<meta name="author" content="CodHub">
-	<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet"> -->
+	<meta name="author" content="Alkaid-Codeur">
 
 	<!-- Bootstrap core CSS -->
 	<link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 
 	<!-- Additional CSS Files -->
 	<link rel="stylesheet" href="/assets/css/fontawesome.css">
@@ -120,10 +119,14 @@ $auth_status = Auth::checkAuthentification();
 
 	<!-- Additional Scripts -->
 	<script src="/assets/vendor/select/js/select2.min.js"></script>
-	<!-- <script src='https://cdn.tiny.cloud/1/5yp2vl48agzjtdsdbgrxcpr4gnedytdenrhynm9z56zsh3ee/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
-	<script src="/assets/vendor/tiny/tiny.js"></script>
+
+	<!-- Tiny MCE for WYSIWYG -->
+	<!-- <script defer src='https://cdn.tiny.cloud/1/5yp2vl48agzjtdsdbgrxcpr4gnedytdenrhynm9z56zsh3ee/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
+	<!-- <script src="/assets/vendor/tiny/tiny.js" referrerpolicy="origin"></script> -->
+
 	<script src="/assets/js/custom.js"></script>
 	<script src="/assets/js/admin_custom.js"></script>
+	<!-- Carousel scripts -->
 	<script src="/assets/js/owl.js"></script>
 	<script src="/assets/js/slick.js"></script>
 	<script src="/assets/js/isotope.js"></script>
@@ -141,7 +144,3 @@ $auth_status = Auth::checkAuthentification();
 	</script>
 </body>
 </html>
-
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur sed earum ipsam tenetur soluta quos, obcaecati ut voluptatibus ratione sint. Laboriosam, laborum facere? Cupiditate ullam esse odio iusto iste cum.
-
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur sed earum ipsam tenetur soluta quos, obcaecati ut voluptatibus ratione sint. Laboriosam, laborum facere? Cupiditate ullam esse odio iusto iste cum.

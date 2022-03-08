@@ -1,10 +1,12 @@
-/* 
+@font-face { font-family: 'Roboto'; src: url("../fonts/Roboto-Light.eot"); src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff"), url("../fonts/Roboto-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; }
 
-TemplateMo 551 Stand Blog
+@font-face { font-family: 'Roboto'; src: url("../fonts/Roboto-Regular.eot"); src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto-Regular.ttf") format("truetype"); font-weight: normal; font-style: normal; }
 
-https://templatemo.com/tm-551-stand-blog
+@font-face { font-family: 'Roboto'; src: url("../fonts/Roboto-Medium.eot"); src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff"), url("../fonts/Roboto-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; }
 
-*/
+@font-face { font-family: 'Roboto'; src: url("../fonts/Roboto-Bold.eot"); src: local("Roboto Bold"), local("Roboto-Bold"), url("../fonts/Roboto-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff"), url("../fonts/Roboto-Bold.ttf") format("truetype"); font-weight: bold; font-style: normal; }
+
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -936,7 +938,6 @@ footer p a:hover {
 	height: 46px;
 	border: 1px solid #eee;
 	font-size: 13px;
-	text-transform: uppercase;
 	font-weight: 500;
 	color: #7a7a7a;
 	outline: none;
@@ -948,8 +949,7 @@ footer p a:hover {
 	width: 100%;
 	height: 46px;
 	border: 1px solid #eee;
-	font-size: 13px;
-	text-transform: uppercase;
+	font-size: 14px;
 	font-weight: 500;
 	color: #7a7a7a;
 	outline: none;
@@ -1053,6 +1053,51 @@ footer p a:hover {
 	background-color: #f48840;
 }
 
+.error-page {
+	text-align: center;
+	padding: 120px 0px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.error-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.error-content .error-type {
+	display: block;
+	font-size: 250px;
+	line-height: 1;
+	font-weight: 700;
+	margin-bottom: 17px;
+	color: #ff7484;
+}
+
+.error-content .error-log {
+	font-size: 1.33rem;
+	font-weight: 600;
+	margin: 0 0 18px;
+	font-family: "Poppins", sans-serif;
+	line-height: 1.3;
+}
+
+.error-content .error-message {
+	color: #5d5d64;
+	margin: 0 0 28px;
+}
+
+.input-personnal-class {
+	position: relative;
+}
+
+.input-personnal-class #password-view {
+	position: absolute;
+	top: 40px;
+	right: 15px;
+	cursor: pointer;
+}
 
 /* Responsive Style */
 @media (max-width: 1250px) {

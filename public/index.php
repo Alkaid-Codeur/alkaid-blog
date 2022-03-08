@@ -32,7 +32,7 @@ $whoops->register();
 
 // Routes any-user : 
 $router->get('/', 'main.home', 'home')
-	   ->get('/nous-contacter', 'main.contact', 'contact')
+	   ->match('/nous-contacter', 'main.contact', 'contact')
 	   ->get('/a-propos', 'main.about', 'about')
 	   ->match('/articles', 'posts.index', 'posts')
 	   ->match('/article/[*:slug]-[i:id]', 'posts.show', 'post')

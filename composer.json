@@ -18,6 +18,7 @@
         "symfony/var-dumper": "^6.0",
         "filp/whoops": "^2.14",
         "vlucas/valitron": "^1.4",
-        "fakerphp/faker": "^1.19"
+        "fakerphp/faker": "^1.19",
+        "swiftmailer/swiftmailer": "^6.0"
     }
 }

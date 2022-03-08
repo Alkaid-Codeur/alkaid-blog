@@ -19,10 +19,12 @@ class Form {
 
 	public function textInput(string $field, string $label, string $type = "text"): string
 	{
+		$pv = ($type === "password") ? '<i id="password-view" class="fa fa-eye-slash"></i>' : "";
 		return <<<HTML
-			<div class="form-group mb-4">
+			<div class="form-group mb-4 input-personnal-class">
 				<label for="{$field}">$label</label>
 				<input type="{$type}" class="{$this->getInputClass('form-control', $field)}" name="{$field}" id="{$field}" value="{$this->fillField($field)}" required>
+				{$pv}
 				{$this->getFeedback($field)}
 			</div>
 		HTML;
@@ -107,6 +109,9 @@ class Form {
 	 */
 	public function fillField(string $field)
 	{
+		if(is_array($this->data)) {
+			return $this->data['field'];
+		}
 		$method = "get" . str_replace(" ", "", ucwords(str_replace("_", " ", $field)));
 		$value = $this->data->$method();
 		// if($value instanceof DateTimeInterface) {

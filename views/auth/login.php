@@ -50,7 +50,7 @@ $form = new Form($user, $errors);
 	</section>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5 col-lg-6">
 	<?php if(isset($_GET['forbidden'])): ?>
 		<div class="alert alert-danger">
 			Vous devez vous connecter pour accéder à cette page.
@@ -58,16 +58,16 @@ $form = new Form($user, $errors);
 	<?php endif ?>
 	<?php if(!empty($errors)): ?>
 		<div class="alert alert-danger">
-			Authentification échouéé! Corrigez les erreurs !
+			L'authentification a échouéé! Corrigez les erreurs !
 		</div>
 	<?php endif ?>
 	<?php if(isset($auth) && $auth === false): ?>
 		<div class="alert alert-danger">
-			Authentification échouéé! Mail ou mot de passe incorrects
+			L'authentification a échouéé! Mail ou mot de passe incorrects
 		</div>
 	<?php endif ?>
 
-	<div class="col-lg-12">
+	<div class="container col-lg-6">
 		<form action="<?= $router->url('admin_login') ?>" method="post">
 			<?= $form->textInput('mail', 'Adresse mail :', "mail");  ?>
 			<?= $form->textInput('password', 'Mot de passe :', "password");  ?>

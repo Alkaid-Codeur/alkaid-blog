@@ -33,7 +33,7 @@ URL::handleSlugInURL($slug, $post->getSlug(), $url);
 		<div class="col-lg-12">
 		<div class="text-content">
 			<h4>Post Details</h4>
-			<h2>Single blog post</h2>
+			<h2><?= $post->getTitle() ?></h2>
 		</div>
 		</div>
 	</div>

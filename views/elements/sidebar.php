@@ -8,6 +8,7 @@ $pdo = PDOConnection::getPDO();
 
 $sidebarPosts = (new PostTable($pdo))->getElements(3);
 $sidebarCategories = (new CategoryTable($pdo))->getElements();
+
 ?>
 <div class="col-lg-4">
 				<div class="sidebar">
@@ -37,7 +38,7 @@ $sidebarCategories = (new CategoryTable($pdo))->getElements();
 								<div class="content">
 									<ul>
 										<?php foreach($sidebarCategories as $category): ?>
-											<li style="text-transform: capitalize"><a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>">- <?= $category->getName() ?></a></li>
+											<li style="text-transform: capitalize"><a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]) ?>">- <?= $category->getName() ?></a> <span> (<?= (new PostTable($pdo))->countPostsForCategory($category->getID()) ?>)</span></li>
 										<?php endforeach ?>
 									</ul>
 								</div>
